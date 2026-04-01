@@ -1,5 +1,7 @@
 # Golden Dome Autonomous Operations Model (AOM)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19368609.svg)](https://doi.org/10.5281/zenodo.19368609)
+
 ## Project Description
 
 **Golden Dome AOM** is a red-team simulation suite for a Tier 1-E (Edge Autonomous) 
