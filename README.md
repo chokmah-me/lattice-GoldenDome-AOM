@@ -15,7 +15,7 @@ operates under strict latency and availability constraints (474 ms LEO-to-GEO re
 ~8% ground-station duty cycle) that preclude human-in-the-loop authorization.
 
 Companion paper: Bilar (2026), *Golden Dome Latency Governance: Autonomous Operations 
-Model Extended to Boost-Phase Intercept Timelines*, DOI: [paper DOI here]  
+Model Extended to Boost-Phase Intercept Timelines*, DOI: 10.5281/zenodo.19368682  
 Companion AOM paper: Bilar (2026), *Anduril LatticeOS: Autonomous Operations Model*, 
 DOI: 10.5281/zenodo.19266807
 
