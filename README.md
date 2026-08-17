@@ -140,7 +140,7 @@ Evidence: `results/claim_verify_meta.json`, `results/claim_verify_out.txt`, `res
 
 Manuscript number/cite integrity (v8.1) is a separate pass: `integrity-manifest.json` → `results/integrity_audit.json`. That pass is structural, not scientific verification.
 
-Do not run `Esimulate.py`. It is a leftover v4 4-check Monte Carlo that overrides the v5 7-check model.
+Do not run `archive/Esimulate.py`. It is a leftover v4 4-check Monte Carlo that overrides the v5 7-check model.
 
 ---
 

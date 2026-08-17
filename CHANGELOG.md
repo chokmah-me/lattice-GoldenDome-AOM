@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-17 — Figures A/C regenerated; Esimulate quarantined
+
+- Re-ran `python simulate.py` after the A/C predicate repairs. Figure A
+  now shows 100% FAR for Δt ≤ −500 ms. Figure C default-track Check 4
+  residuals are O(1–3 m) (update residual), and the 50 m pop-in is MISSED
+  as published.
+- `Esimulate.py` moved to `archive/` (v4 4-check leftover).
+
 ## 2026-08-17 — Computational claim gate + manuscript integrity (v8.1)
 
 Executed re-run of load-bearing simulation claims and a structural integrity
@@ -28,7 +36,8 @@ peer review.
 
 ### Residual
 
-- On-disk Figures A/C may predate the Check 4 / Scenario A repairs until
-  `python simulate.py` is re-run.
-- `Esimulate.py` is still a v4 leftover; do not treat it as the suite.
 - D/E remain parametric assumptions (README Caveats).
+- Figure C coverage sweep still uses `x[5] = x[4] + jump` with `x[4]` NaN
+  (flat ~2% detect; annotated cross-over ~10 m). The 80 m claim is the
+  Check 4 update-residual threshold, gated by `claims/verify_c_lethal.py`,
+  not that sweep panel.
