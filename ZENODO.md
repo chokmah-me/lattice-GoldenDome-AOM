@@ -7,7 +7,7 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 | **Paper concept** | [10.5281/zenodo.19368681](https://doi.org/10.5281/zenodo.19368681) | **Stable.** Always resolves to the latest paper PDF. |
 | **Paper (current version)** | [10.5281/zenodo.21971208](https://doi.org/10.5281/zenodo.21971208) | v8.1; 2026-08-16. **Published.** |
 | **Software concept** | [10.5281/zenodo.19368608](https://doi.org/10.5281/zenodo.19368608) | Always latest software zip. |
-| **Software (current version)** | [10.5281/zenodo.19368609](https://doi.org/10.5281/zenodo.19368609) | GitHub Release `1.0.0` (falsification suite). Unchanged this pass. |
+| **Software (current version)** | [10.5281/zenodo.19368609](https://doi.org/10.5281/zenodo.19368609) | GitHub Release `1.0.0` zip. **1.0.1** is the live GitHub tag; a new Zenodo version under concept `19368608` is residual until the GH→Zenodo webhook (or a manual mint) fires. Do not put 1.0.1 onto the **paper** concept. |
 
 ## Paper version history
 
@@ -20,7 +20,7 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 ## External links
 
 - **GitHub:** https://github.com/chokmah-me/lattice-GoldenDome-AOM
-- **Release:** https://github.com/chokmah-me/lattice-GoldenDome-AOM/releases/tag/1.0.0
+- **Release:** https://github.com/chokmah-me/lattice-GoldenDome-AOM/releases/tag/1.0.1 (current software). Prior: [`1.0.0`](https://github.com/chokmah-me/lattice-GoldenDome-AOM/releases/tag/1.0.0).
 - **OSF (legacy v7 mirror):** https://osf.io/sxt7v/ — do not open a new child
 - **Catalog (v8.1):** https://chokmah.me/research/golden-dome-latency-governance-autonomous-operations-model-e-21971208/  
   Historical v7 slug: `…-19368682/` (page now points at v8.1 + concept)

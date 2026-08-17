@@ -7,8 +7,8 @@ authors:
     given-names: Daniyel Yaacov
     orcid: "https://orcid.org/0000-0002-9040-6914"
     affiliation: "Chokmah LLC"
-date-released: "2026-04-01"
-version: "1.0.0"
+date-released: "2026-08-17"
+version: "1.0.1"
 license: MIT
 doi: "10.5281/zenodo.19368609"
 url: "https://doi.org/10.5281/zenodo.19368609"

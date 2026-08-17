@@ -468,12 +468,17 @@ def cross_modal_mahalanobis_check(track, genuine_track, n_dim=8) -> dict:
 
 def run_lethal_compliance_sweep(n_trials=500):
     """
-    Sweep pop-in magnitude and measure:
-    - Physics check pass rate (kinematic bounds only)
-    - Temporal coherence detection rate
-    - Cross-modal Mahalanobis detection rate (Fix #4)
+    Two constructions on the same magnitude axis (they are not the same attack):
+
+    - 3a / 3b: cold-start adversarial track, valid tail shifted so the pop-in
+      offset vs genuine equals ``jump``. Internally smooth, so Check 4 is
+      blind; kinematics stay in envelope.
+    - Check 4: in-series jump on the genuine path. That is the published
+      ~80 m update-residual cliff. An 80 m step also wrecks G-load, so 3a
+      is *not* measured on this series.
     """
     jump_magnitudes = np.linspace(10, 500, 50)
+    jump_index = 20
     physics_pass = []
     coherence_detect = []
     mahal_detect = []
@@ -486,20 +491,27 @@ def run_lethal_compliance_sweep(n_trials=500):
             tracks = generate_physics_valid_track(
                 use_pop_in=True, pop_in_step=5,
                 entropy_offset=trial * 10)
-            adv = tracks["adversarial"]
             gen = tracks["genuine"]
-            adv_scaled = dict(adv)
-            adv_scaled["x"] = adv["x"].copy()
-            adv_scaled["x"][5] = adv["x"][4] + jump * RNG.choice([-1, 1])
+            adv = tracks["adversarial"]
+            pop = tracks["pop_in_step"]
+            sign = float(RNG.choice([-1, 1]))
 
-            pe = physics_envelope_check(adv_scaled)
-            tc = temporal_coherence_check(adv_scaled)
-            cm = cross_modal_mahalanobis_check(adv_scaled, gen)
+            cold = dict(adv)
+            cold["x"] = adv["x"].copy()
+            if not np.isnan(adv["x"][pop]) and not np.isnan(gen["x"][pop]):
+                delta = sign * jump - (adv["x"][pop] - gen["x"][pop])
+                cold["x"][pop:] = adv["x"][pop:] + delta
 
+            pe = physics_envelope_check(cold)
+            cm = cross_modal_mahalanobis_check(cold, gen)
             p_results.append(int(pe["passes"]))
-            c_results.append(int(tc["any_fail"]))
-            # Cross-modal detects if FP32 score exceeds threshold
             m_results.append(int(not cm["passes_fp32"]))
+
+            jumped = dict(gen)
+            jumped["x"] = gen["x"].copy()
+            jumped["x"][jump_index:] = jumped["x"][jump_index:] + sign * jump
+            tc = temporal_coherence_check(jumped)
+            c_results.append(int(tc["any_fail"]))
 
         physics_pass.append(np.mean(p_results))
         coherence_detect.append(np.mean(c_results))
@@ -859,16 +871,19 @@ def plot_lethal_compliance(lc_res: dict, track_data: dict, path: Path):
              label="Coherence detection rate")
     ax4.plot(jm, lc_res["mahal_detect_rate"]*100, color=COLORS["orange"], lw=1.8,
              ls="--", label="Cross-modal Mahal. detect rate")
-    ax4.set_xlabel("Pop-in discontinuity (m)")
+    ax4.set_xlabel("Discontinuity (m)  [3a/3b: cold-start offset; C4: in-series jump]")
     ax4.set_ylabel("Rate (%)")
     ax4.set_title("Lethal Compliance: Check Coverage")
     ax4.legend(fontsize=8)
-    cross = np.argmin(np.abs(lc_res["physics_pass_rate"] - lc_res["coherence_detect_rate"]))
-    ax4.axvline(jm[cross], color=COLORS["red"], ls=":", lw=0.9,
-                label=f"Kinematic/coherence cross-over at {jm[cross]:.0f} m")
+    above = np.where(lc_res["coherence_detect_rate"] >= 0.5)[0]
+    cross_m = float(jm[above[0]]) if above.size else float(jm[np.argmin(np.abs(
+        lc_res["physics_pass_rate"] - lc_res["coherence_detect_rate"]))])
+    ax4.axvline(cross_m, color=COLORS["red"], ls=":", lw=0.9,
+                label=f"50% coherence detect at {cross_m:.0f} m")
+    ax4.axvline(80.0, color=COLORS["gray"], ls="--", lw=0.8, label="80 m threshold")
     ax4.legend(fontsize=8)
-    ax4.text(0.45, 0.15,
-             "Below cross-over: kinematic\nbounds pass, coherence\ncheck may miss.",
+    ax4.text(0.42, 0.12,
+             "C4 (in-series) rises at ~80 m.\n3a/3b are cold-start offset\n(internally smooth).",
              transform=ax4.transAxes, fontsize=8.5, color=COLORS["red"],
              bbox=dict(boxstyle="round,pad=0.3", fc="#fff0f0", ec=COLORS["red"], alpha=0.8))
 
@@ -1097,8 +1112,13 @@ def main():
     s075 = s_levels[np.argmin(np.abs(s_levels - 0.75))]
     s100 = s_levels[-1]
 
-    cross_idx = np.argmin(np.abs(lc_sweep['physics_pass_rate'] - lc_sweep['coherence_detect_rate']))
-    cross_m = lc_sweep['jump_magnitudes'][cross_idx]
+    _above = np.where(lc_sweep["coherence_detect_rate"] >= 0.5)[0]
+    if _above.size:
+        cross_m = float(lc_sweep["jump_magnitudes"][_above[0]])
+    else:
+        cross_idx = np.argmin(np.abs(
+            lc_sweep["physics_pass_rate"] - lc_sweep["coherence_detect_rate"]))
+        cross_m = float(lc_sweep["jump_magnitudes"][cross_idx])
 
     print("\n" + "=" * 60)
     print("FALSIFICATION SUMMARY")
@@ -1116,7 +1136,7 @@ def main():
           f"{'DETECTED' if not cm_adv['passes_fp32'] else 'PASS (attack succeeds)'}"
           f" (FP32 score={cm_adv['fp32_score']:.1f}, threshold={cm_adv['threshold']:.1f})")
     print(f"   Temporal coherence (C4): {'correctly DETECTED' if tc_adv['any_fail'] else 'MISSED'}")
-    print(f"   Kinematic/coherence cross-over: ~{cross_m:.0f} m")
+    print(f"   Check 4 50%-detect jump: ~{cross_m:.0f} m")
     print(f"\nD. Per-check analytical sensitivity (7 checks)")
     p_at_07 = np.interp(0.7, sens["sophistication"], sens["p_detected_combined"])
     p_at_10 = sens["p_detected_combined"][-1]
