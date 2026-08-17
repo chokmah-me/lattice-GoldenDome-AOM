@@ -8,7 +8,7 @@ figures, Figure C coverage sweep now injects an in-series jump (the old
 `archive/`. Figure C coverage panel: Check 4 is an in-series jump (50%
 detect at 80 m); 3a/3b are cold-start offset (internally smooth). Paper
 remains v8.1 / Zenodo `21971208` (not reminted). Software Zenodo version
-DOI stays `19368609` until a new record appears under concept `19368608`.
+DOI is `10.5281/zenodo.21979227` (concept `19368608`). Prior software version `19368609` is superseded.
 
 ## 2026-08-17 — Figures A/C regenerated; Esimulate quarantined
 

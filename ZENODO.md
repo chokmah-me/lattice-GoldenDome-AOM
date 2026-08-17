@@ -7,7 +7,8 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 | **Paper concept** | [10.5281/zenodo.19368681](https://doi.org/10.5281/zenodo.19368681) | **Stable.** Always resolves to the latest paper PDF. |
 | **Paper (current version)** | [10.5281/zenodo.21971208](https://doi.org/10.5281/zenodo.21971208) | v8.1; 2026-08-16. **Published.** |
 | **Software concept** | [10.5281/zenodo.19368608](https://doi.org/10.5281/zenodo.19368608) | Always latest software zip. |
-| **Software (current version)** | [10.5281/zenodo.19368609](https://doi.org/10.5281/zenodo.19368609) | GitHub Release `1.0.0` zip. **1.0.1** is the live GitHub tag; a new Zenodo version under concept `19368608` is residual until the GH→Zenodo webhook (or a manual mint) fires. Do not put 1.0.1 onto the **paper** concept. |
+| **Software (current version)** | [10.5281/zenodo.21979227](https://doi.org/10.5281/zenodo.21979227) | GitHub Release `1.0.1` (2026-08-17). Concept `19368608` resolves here. Do not merge into the **paper** concept. |
+| **Software (prior version)** | [10.5281/zenodo.19368609](https://doi.org/10.5281/zenodo.19368609) | GitHub Release `1.0.0`. Superseded. |
 
 ## Paper version history
 
@@ -52,6 +53,6 @@ Do **not** re-upload `simulate.py`, `requirements.txt`, or figures A–E onto th
 
 | Relation | Identifier |
 |---|---|
-| `isSupplementedBy` | 10.5281/zenodo.19368609 |
+| `isSupplementedBy` | 10.5281/zenodo.21979227 (software 1.0.1; prior 10.5281/zenodo.19368609) |
 | `isNewVersionOf` | 10.5281/zenodo.19368682 |
 | `continues` | 10.5281/zenodo.19266807 |
