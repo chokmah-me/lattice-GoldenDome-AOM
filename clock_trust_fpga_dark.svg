@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1000" width="1100" height="1000" font-family="DejaVu Sans, Arial, sans-serif">
+<defs>
+<marker id="ap" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#a08cff"/></marker>
+<marker id="ag" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a8a8a"/></marker>
+<marker id="ab" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#4a9ad8"/></marker>
+<marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#e05050"/></marker>
+</defs>
+<rect width="1100" height="1000" fill="#1c1c1c"/>
+
+<!-- external sources -->
+<g font-size="17" font-weight="bold" text-anchor="middle">
+<rect x="50" y="30" width="270" height="70" rx="10" fill="#1e5a45" stroke="#3fb58a" stroke-width="2"/>
+<text x="185" y="58" fill="#c8f0dc">GPS III M-code</text><text x="185" y="83" font-size="14" font-weight="normal" fill="#8fd9b8">P1 · &lt;1 µs · spoof-resistant</text>
+<rect x="405" y="30" width="270" height="70" rx="10" fill="#173d63" stroke="#4a9ad8" stroke-width="2"/>
+<text x="540" y="58" fill="#cfe4fa">ISL optical link</text><text x="540" y="83" font-size="14" font-weight="normal" fill="#88bde8">P2 · shared with Check 6 quorum</text>
+<rect x="760" y="30" width="270" height="70" rx="10" fill="#5a3810" stroke="#d99a3f" stroke-width="2"/>
+<text x="895" y="58" fill="#f5dcb4">Atomic clock (Rb CSAC)</text><text x="895" y="83" font-size="14" font-weight="normal" fill="#e0b070">P3 · ~1 µs/day drift · holdover</text>
+</g>
+
+<!-- FPGA die -->
+<rect x="30" y="130" width="1040" height="700" rx="14" fill="none" stroke="#666" stroke-width="2"/>
+<text x="50" y="155" font-size="14" fill="#999">FPGA die</text>
+
+<!-- Region A -->
+<rect x="45" y="170" width="480" height="640" rx="12" fill="#2f2a63" stroke="#8a7cf0" stroke-width="2"/>
+<text x="285" y="200" font-size="18" font-weight="bold" fill="#e2dcff" text-anchor="middle">Region A · Secure Partition</text>
+<text x="285" y="222" font-size="13" fill="#b4a8ff" text-anchor="middle">hardware-isolated clock logic · bitstream logic-locked</text>
+
+<g font-size="15" font-weight="bold" text-anchor="middle">
+<rect x="70" y="250" width="200" height="60" rx="8" fill="#1e5a45" stroke="#3fb58a"/><text x="170" y="275" fill="#c8f0dc">GPS receiver</text><text x="170" y="296" font-size="12" font-weight="normal" fill="#8fd9b8">M-code verified</text>
+<rect x="300" y="250" width="200" height="60" rx="8" fill="#173d63" stroke="#4a9ad8"/><text x="400" y="275" fill="#cfe4fa">ISL time rx</text><text x="400" y="296" font-size="12" font-weight="normal" fill="#88bde8">constellation sync</text>
+<rect x="70" y="340" width="430" height="60" rx="8" fill="#5a3810" stroke="#d99a3f"/><text x="285" y="365" fill="#f5dcb4">Atomic clock interface</text><text x="285" y="386" font-size="12" font-weight="normal" fill="#e0b070">free-running · periodic sync · Rb only, no XO</text>
+<rect x="100" y="440" width="370" height="60" rx="8" fill="#3a3a3a" stroke="#999"/><text x="285" y="465" fill="#eee">Clock Arbiter</text><text x="285" y="486" font-size="12" font-weight="normal" fill="#bbb">priority: P1 healthy → P2 → P3 holdover</text>
+<rect x="100" y="540" width="370" height="60" rx="8" fill="#332e70" stroke="#8a7cf0"/><text x="285" y="565" fill="#e2dcff">Crypto provenance binding</text><text x="285" y="586" font-size="12" font-weight="normal" fill="#b4a8ff">signs timestamp + source ID</text>
+<rect x="100" y="640" width="370" height="60" rx="8" fill="#332e70" stroke="#8a7cf0"/><text x="285" y="665" fill="#e2dcff">Provenance validator</text><text x="285" y="686" font-size="12" font-weight="normal" fill="#b4a8ff">rejects payload timestamps</text>
+</g>
+<text x="285" y="760" font-size="13" fill="#b4a8ff" text-anchor="middle">t_auth = signed(timestamp, source ID)</text>
+<text x="285" y="790" font-size="12" fill="#8a7cf0" text-anchor="middle">payload track_timestamp is not routed into this region</text>
+
+<!-- Region B -->
+<rect x="560" y="170" width="490" height="640" rx="12" fill="#3a3a3a" stroke="#888" stroke-width="2"/>
+<text x="805" y="200" font-size="18" font-weight="bold" fill="#eee" text-anchor="middle">Region B · Auditor Pipeline</text>
+<text x="805" y="222" font-size="13" fill="#aaa" text-anchor="middle">7-check gauntlet · 5 ms budget · sequential, HOLD on first fail</text>
+
+<g font-size="15" font-weight="bold" text-anchor="middle">
+<rect x="585" y="250" width="440" height="52" rx="8" fill="#2a2a2a" stroke="#888"/><text x="805" y="282" fill="#ddd">Checks 1-3 · Schema · MIO hash · Physics + cross-modal</text>
+<rect x="585" y="322" width="440" height="60" rx="8" fill="#332e70" stroke="#8a7cf0" stroke-width="2"/><text x="805" y="347" fill="#e2dcff">Check 4 · Temporal coherence + Staleness TTL</text><text x="805" y="368" font-size="12" font-weight="normal" fill="#b4a8ff">reads t_auth only · rejects t_auth_now - t_auth_track &gt; 500 ms</text>
+<rect x="585" y="402" width="440" height="52" rx="8" fill="#2a2a2a" stroke="#888"/><text x="805" y="434" fill="#ddd">Check 5 · Confidence floor + chaotic-quantized PINN</text>
+<rect x="585" y="474" width="440" height="60" rx="8" fill="#173d63" stroke="#4a9ad8" stroke-width="2"/><text x="805" y="499" fill="#cfe4fa">Check 6 · Geo-fence + local ISL quorum</text><text x="805" y="520" font-size="12" font-weight="normal" fill="#88bde8">shares the optical ISL with P2 · DEGRADED_QUORUM if jammed</text>
+<rect x="585" y="554" width="440" height="52" rx="8" fill="#2a2a2a" stroke="#888"/><text x="805" y="586" fill="#ddd">Check 7 · Cryptographic trace commit</text>
+<rect x="585" y="640" width="440" height="52" rx="8" fill="#1e5a45" stroke="#3fb58a" stroke-width="2"/><text x="805" y="672" fill="#c8f0dc">ENGAGE  /  HOLD + async trace to hub</text>
+</g>
+<text x="805" y="730" font-size="12" fill="#aaa" text-anchor="middle">Under GPS denial + ISL jamming: Region A falls to P3 holdover,</text>
+<text x="805" y="748" font-size="12" fill="#aaa" text-anchor="middle">Region B logs DEGRADED_QUORUM. Two of seven checks degrade together.</text>
+<text x="805" y="780" font-size="12" fill="#888" text-anchor="middle">Until the SDA optical mesh operates on orbit (Aug 2026), this is the baseline state.</text>
+
+<!-- flows: external -> region A -->
+<g stroke="#8a8a8a" stroke-width="2" fill="none" marker-end="url(#ag)">
+<line x1="185" y1="100" x2="170" y2="248"/>
+<line x1="540" y1="100" x2="400" y2="248"/>
+<path d="M800,100 L800,120 L545,120 L545,340 L502,340"/>
+</g>
+<!-- flows inside region A -->
+<g stroke="#8a8a8a" stroke-width="2" fill="none" marker-end="url(#ag)">
+<line x1="170" y1="310" x2="230" y2="438"/>
+<line x1="400" y1="310" x2="340" y2="438"/>
+<line x1="285" y1="400" x2="285" y2="438"/>
+</g>
+<g stroke="#a08cff" stroke-width="2.5" fill="none" marker-end="url(#ap)">
+<line x1="285" y1="500" x2="285" y2="538"/>
+<line x1="285" y1="600" x2="285" y2="638"/>
+<!-- t_auth: exit right of validator, cross partition boundary, into Check 4 left edge -->
+<path d="M470,670 L540,670 L540,352 L583,352"/>
+</g>
+<text x="527" y="600" font-size="12" fill="#c8bfff" text-anchor="middle" transform="rotate(-90 527,600)">t_auth (signed)</text>
+<!-- partition boundary -->
+<line x1="553" y1="180" x2="553" y2="800" stroke="#8a7cf0" stroke-width="1.5" stroke-dasharray="6,5"/>
+<text x="553" y="176" font-size="11" fill="#8a7cf0" text-anchor="middle">partition boundary</text>
+
+<!-- flows inside region B -->
+<g stroke="#8a8a8a" stroke-width="2" fill="none" marker-end="url(#ag)">
+<line x1="805" y1="302" x2="805" y2="320"/>
+<line x1="805" y1="382" x2="805" y2="400"/>
+<line x1="805" y1="454" x2="805" y2="472"/>
+<line x1="805" y1="534" x2="805" y2="552"/>
+<line x1="805" y1="606" x2="805" y2="638"/>
+</g>
+<!-- shared ISL path: ISL time rx -> Check 6, dashed blue, routed over the top -->
+<path d="M400,250 L400,140 L1058,140 L1058,504 L1027,504" stroke="#4a9ad8" stroke-width="2" stroke-dasharray="7,5" fill="none" marker-end="url(#ab)"/>
+<text x="805" y="158" font-size="12" fill="#88bde8" text-anchor="middle">blue dashed: same optical ISL hardware feeds P2 clock and Check 6 quorum</text>
+
+<!-- attacks -->
+<g font-size="16" font-weight="bold" text-anchor="middle">
+<rect x="45" y="870" width="300" height="70" rx="10" fill="#5a1e1e" stroke="#e05050" stroke-width="2"/><text x="195" y="897" fill="#f5c0c0">GPS denial</text><text x="195" y="920" font-size="13" font-weight="normal" fill="#f09090">P1 lost → Arbiter falls to P2, then P3</text>
+<rect x="400" y="870" width="300" height="70" rx="10" fill="#5a1e1e" stroke="#e05050" stroke-width="2"/><text x="550" y="897" fill="#f5c0c0">Timestamp injection (Binary Cliff)</text><text x="550" y="920" font-size="13" font-weight="normal" fill="#f09090">Δt ≤ -500 ms → 100% bypass if payload clock read</text>
+<rect x="755" y="870" width="300" height="70" rx="10" fill="#5a1e1e" stroke="#e05050" stroke-width="2"/><text x="905" y="897" fill="#f5c0c0">ISL jamming</text><text x="905" y="920" font-size="13" font-weight="normal" fill="#f09090">P2 clock and Check 6 quorum fail together</text>
+</g>
+<g stroke="#e05050" stroke-width="2" stroke-dasharray="6,5" fill="none" marker-end="url(#ar)">
+<path d="M120,870 L120,850 L60,850 L60,280 L68,280"/>
+<path d="M550,870 L550,820 L490,820 L490,692 L472,692"/>
+<path d="M905,870 L905,850 L1090,850 L1090,15 L540,15 L540,28"/>
+</g>
+<text x="45" y="968" font-size="12" fill="#f09090">Timestamp injection is stopped at the Provenance validator in Region A; it never reaches Region B. GPS denial and ISL jamming act on external inputs.</text>
+
+<!-- legend outside die -->
+<g font-size="12">
+<line x1="45" y1="990" x2="95" y2="990" stroke="#a08cff" stroke-width="2.5" marker-end="url(#ap)"/><text x="103" y="994" fill="#ccc">authenticated signed signal</text>
+<line x1="330" y1="990" x2="380" y2="990" stroke="#4a9ad8" stroke-width="2" stroke-dasharray="7,5" marker-end="url(#ab)"/><text x="388" y="994" fill="#ccc">shared ISL path</text>
+</g>
+</svg>

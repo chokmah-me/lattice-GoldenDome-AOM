@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the paper (preferred) and/or the software."
+type: software
+title: "lattice-GoldenDome-AOM: Golden Dome AOM falsification suite"
+authors:
+  - family-names: Bilar
+    given-names: Daniyel Yaacov
+    orcid: "https://orcid.org/0000-0002-9040-6914"
+    affiliation: "Chokmah LLC"
+date-released: "2026-04-01"
+version: "1.0.0"
+license: MIT
+doi: "10.5281/zenodo.19368609"
+url: "https://doi.org/10.5281/zenodo.19368609"
+repository-code: "https://github.com/chokmah-me/lattice-GoldenDome-AOM"
+keywords:
+  - Golden Dome
+  - hypersonic glide vehicle
+  - latency governance
+  - edge autonomy
+  - PINN
+  - Monte Carlo
+preferred-citation:
+  type: report
+  title: "Golden Dome Latency Governance: Autonomous Operations Model Extended to Boost-Phase Intercept Timelines"
+  authors:
+    - family-names: Bilar
+      given-names: Daniyel Yaacov
+      orcid: "https://orcid.org/0000-0002-9040-6914"
+      affiliation: "Chokmah LLC"
+  year: 2026
+  month: 8
+  version: "8.1"
+  doi: "10.5281/zenodo.19368681"
+  url: "https://doi.org/10.5281/zenodo.19368681"
+  publisher:
+    name: Zenodo
+  # preferred-citation.doi is the paper concept (always latest PDF).
+  # Pin this PDF with 10.5281/zenodo.21971208.
