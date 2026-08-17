@@ -1,0 +1,187 @@
+{
+  "schema": "cd-manuscript-integrity/v1",
+  "ok": true,
+  "status_line": "lattice-GoldenDome-AOM \u2014 pass (I1 pass; I3 pass (2 resolved, 0 unresolved))",
+  "unbound_result_claims": [],
+  "unbound_buckets": {},
+  "status": "pass",
+  "project": "lattice-GoldenDome-AOM",
+  "manuscript": "dyb-2026i-goldendome-R-v8.1.md",
+  "bibliography": null,
+  "manifest": "integrity-manifest.json",
+  "companions": [],
+  "online": true,
+  "timestamp_utc": "2026-08-17T07:07:02Z",
+  "citations": [
+    {
+      "kind": "zenodo",
+      "token": "19266807",
+      "needs_bib_key": false,
+      "identifier": "10.5281/zenodo.19266807"
+    },
+    {
+      "kind": "zenodo",
+      "token": "19368609",
+      "needs_bib_key": false,
+      "identifier": "10.5281/zenodo.19368609"
+    },
+    {
+      "kind": "doi",
+      "token": "10.5281/zenodo.19266807",
+      "needs_bib_key": false,
+      "identifier": "10.5281/zenodo.19266807"
+    },
+    {
+      "kind": "doi",
+      "token": "10.5281/zenodo.19368609",
+      "needs_bib_key": false,
+      "identifier": "10.5281/zenodo.19368609"
+    },
+    {
+      "kind": "author_year",
+      "token": "August 2026",
+      "needs_bib_key": false,
+      "identifier": null
+    },
+    {
+      "kind": "author_year",
+      "token": "Oct 2025",
+      "needs_bib_key": false,
+      "identifier": null
+    },
+    {
+      "kind": "author_year",
+      "token": "Jan 2026",
+      "needs_bib_key": false,
+      "identifier": null
+    },
+    {
+      "kind": "author_year",
+      "token": "Dec 2025",
+      "needs_bib_key": false,
+      "identifier": null
+    },
+    {
+      "kind": "author_year",
+      "token": "Mar 2025",
+      "needs_bib_key": false,
+      "identifier": null
+    },
+    {
+      "kind": "author_year",
+      "token": "Jan 2024",
+      "needs_bib_key": false,
+      "identifier": null
+    },
+    {
+      "kind": "author_year",
+      "token": "Mar 2026",
+      "needs_bib_key": false,
+      "identifier": null
+    },
+    {
+      "kind": "author_year",
+      "token": "Apr 1985",
+      "needs_bib_key": false,
+      "identifier": null
+    },
+    {
+      "kind": "author_year",
+      "token": "June 2026",
+      "needs_bib_key": false,
+      "identifier": null
+    }
+  ],
+  "result_claim_count": 42,
+  "bib_keys": [],
+  "numbered_refs": [],
+  "checks": {
+    "I1": "pass",
+    "I2": "n/a",
+    "I3": "pass",
+    "I4": "limited",
+    "I5": "warn"
+  },
+  "findings": [
+    {
+      "check": "I3",
+      "severity": "warn",
+      "code": "author_year_unindexed",
+      "detail": "August 2026 not matched in References/.bib (inline Chokmah cite; not a fail)"
+    },
+    {
+      "check": "I3",
+      "severity": "warn",
+      "code": "author_year_unindexed",
+      "detail": "Oct 2025 not matched in References/.bib (inline Chokmah cite; not a fail)"
+    },
+    {
+      "check": "I3",
+      "severity": "warn",
+      "code": "author_year_unindexed",
+      "detail": "Jan 2026 not matched in References/.bib (inline Chokmah cite; not a fail)"
+    },
+    {
+      "check": "I3",
+      "severity": "warn",
+      "code": "author_year_unindexed",
+      "detail": "Dec 2025 not matched in References/.bib (inline Chokmah cite; not a fail)"
+    },
+    {
+      "check": "I3",
+      "severity": "warn",
+      "code": "author_year_unindexed",
+      "detail": "Mar 2025 not matched in References/.bib (inline Chokmah cite; not a fail)"
+    },
+    {
+      "check": "I3",
+      "severity": "warn",
+      "code": "author_year_unindexed",
+      "detail": "Jan 2024 not matched in References/.bib (inline Chokmah cite; not a fail)"
+    },
+    {
+      "check": "I3",
+      "severity": "warn",
+      "code": "author_year_unindexed",
+      "detail": "Mar 2026 not matched in References/.bib (inline Chokmah cite; not a fail)"
+    },
+    {
+      "check": "I3",
+      "severity": "warn",
+      "code": "author_year_unindexed",
+      "detail": "Apr 1985 not matched in References/.bib (inline Chokmah cite; not a fail)"
+    },
+    {
+      "check": "I3",
+      "severity": "warn",
+      "code": "author_year_unindexed",
+      "detail": "June 2026 not matched in References/.bib (inline Chokmah cite; not a fail)"
+    },
+    {
+      "check": "I3",
+      "severity": "info",
+      "code": "resolved",
+      "detail": "10.5281/zenodo.19266807 via zenodo"
+    },
+    {
+      "check": "I3",
+      "severity": "info",
+      "code": "resolved",
+      "detail": "10.5281/zenodo.19368609 via zenodo"
+    },
+    {
+      "check": "I4",
+      "severity": "limited",
+      "code": "needs_alignment_judgment",
+      "detail": "artifacts for method check: ['lattice-GoldenDome-AOM/Esimulate.py', 'lattice-GoldenDome-AOM/simulate.py', 'lattice-GoldenDome-AOM/claims/verify_a_ghost.py', 'lattice-GoldenDome-AOM/claims/verify_b_quant.py', 'lattice-GoldenDome-AOM/claims/verify_c_lethal.py', 'lattice-GoldenDome-AOM/claims/verify_d_analytical.py', 'lattice-GoldenDome-AOM/claims/verify_e_montecarlo.py']"
+    },
+    {
+      "check": "I5",
+      "severity": "warn",
+      "code": "overclaim_lexicon",
+      "detail": "flagged phrasing (not a fail): ['First', 'first']"
+    }
+  ],
+  "errors": [],
+  "evidence": "results/integrity_audit.json"
+}

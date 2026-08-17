@@ -1,0 +1,46 @@
+computational-claim-gate verify  ok=True
+schema: cd-claim-gate/v1
+project: C:\Users\Elke Shayna\Documents\00Dev\lattice-GoldenDome-AOM
+manifest: C:\Users\Elke Shayna\Documents\00Dev\lattice-GoldenDome-AOM\claim-manifest.json
+timestamp: 2026-08-17T02:11:10.947278+00:00
+claims: 5
+
+## claim A-ghost  ok=True  exit=0  ms=15131
+cmd: ['python', 'claims/verify_a_ghost.py']
+--- log tail ---
+A-ghost: bypass@Δt≤−500ms = 100% (500 points); P99=4.611 ms; P99.9=4.819 ms
+OK: A-ghost cliff + latency (P99=4.611, P99.9=4.819 vs 4.61/4.82)
+
+## claim B-quant  ok=True  exit=0  ms=14479
+cmd: ['python', 'claims/verify_b_quant.py']
+--- log tail ---
+B-quant: nominal success=0.040% (8/20000); fp32_thresh=3.938
+OK: B-quant isolated seed=42 rate=0.040% (published ~0.06%; cap 0.5%)
+
+## claim C-lethal  ok=True  exit=0  ms=13537
+cmd: ['python', 'claims/verify_c_lethal.py']
+--- log tail ---
+C-lethal default 50 m: 3a_pass=True 3b_fp32=0.719 thresh=3.938 3b_pass=True
+C-lethal: Check 4 first-detect jump ≈ 81.0 m (published ~80 m)
+OK: C-lethal 3a/3b pass at 50 m (FP32=0.72, thr=3.94); 200 m detected; crossover=81 m
+
+## claim D-analytical  ok=True  exit=0  ms=13711
+cmd: ['python', 'claims/verify_d_analytical.py']
+--- log tail ---
+D-analytical: p(s=0.7)=99.27%  p(s=0.85)=96.81%  p(s=1.0)=89.14%  n(s<0.85 and p≤0.9)=0
+OK: D-analytical combined >90% for all s<0.85 (s=0.7 → 99.3%; s=1.0 → 89.1%)
+
+## claim E-montecarlo  ok=True  exit=0  ms=16623
+cmd: ['python', 'claims/verify_e_montecarlo.py']
+--- log tail ---
+E-montecarlo full 7-check (nearest linspace points):
+  s_req=0.00 s=0.0000 mean=100.00% SE=0.000 expected=100.00 tol=0.25 Δ=0.00
+  s_req=0.26 s=0.2632 mean=100.00% SE=0.000 expected=100.00 tol=0.25 Δ=0.00
+  s_req=0.53 s=0.5263 mean=99.93% SE=0.012 expected=99.93 tol=0.25 Δ=0.00
+  s_req=0.74 s=0.7368 mean=99.03% SE=0.044 expected=99.03 tol=0.25 Δ=0.00
+  s_req=1.00 s=1.0000 mean=89.18% SE=0.139 expected=89.18 tol=0.28 Δ=0.00
+E-montecarlo PINN-zeroed:
+  s_req=0.74 s=0.7368 mean=96.13% expected=96.1 tol=0.25 Δ=0.03
+  s_req=1.00 s=1.0000 mean=61.65% expected=61.7 tol=0.43 Δ=0.05
+E-montecarlo PINN gap at s=1: 27.53 pp (published 27.5)
+OK: E-montecarlo 50000×20 seed=42 matches published table within max(0.25 pp, 2·SE); gap=27.53 pp

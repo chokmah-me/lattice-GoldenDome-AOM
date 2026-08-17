@@ -51,7 +51,7 @@ except ImportError:
     NUMBA_AVAILABLE = False
 
 RNG = np.random.default_rng(42)
-OUT = Path(r"G:\My Drive\07_Code_Projects\00Dev\lattice-GoldenDome-AOM\results")
+OUT = Path(__file__).resolve().parent / "results"
 OUT.mkdir(parents=True, exist_ok=True)
 
 # ---------------------------------------------------------------------------
@@ -125,12 +125,13 @@ def ghost_injection_attack(benign_track, delta_t_ms: float,
     Returns (injected_track, passes_staleness_check)
     """
     track = dict(benign_track)
-    track["ts"] = benign_track["ts"] + delta_t_ms  # clock skew injection
-    # Check 4: staleness gate.  auditor sees: now - track.ts > staleness_ttl_ms?
-    # Adversary wants the injected ts to look younger than TTL
-    # so delta_t_ms should be NEGATIVE (advance the clock)
-    age_at_gate = -delta_t_ms   # how much younger the track looks
-    passes = age_at_gate < staleness_ttl_ms
+    track["ts"] = benign_track["ts"] + delta_t_ms  # payload timestamp spoof
+    # Check 4 reading the payload timestamp: Δt ≤ −TTL makes a stale
+    # injection look fresh (100% FAR). age_at_gate = −Δt so a negative
+    # spoof reduces apparent age past the TTL. This is the published
+    # Scenario A cliff; authenticated t_auth is out of scope here.
+    age_at_gate = -delta_t_ms
+    passes = age_at_gate >= staleness_ttl_ms
     return track, passes
 
 def run_ghost_attack_sweep(n_trials=2000):
@@ -342,11 +343,18 @@ def temporal_coherence_check(track, window=5) -> dict:
     res_valid   = np.zeros(n)
     flags_valid = np.zeros(n, dtype=bool)
 
-    for i in range(window, n):
-        x_med = np.median(x[i-window:i])
-        y_med = np.median(y[i-window:i])
-        res_valid[i]   = np.sqrt((x[i] - x_med)**2 + (y[i] - y_med)**2)
-        flags_valid[i] = res_valid[i] > 80.0   # meters
+    # Residual is on consecutive updates, not absolute position. A Mach-5
+    # track steps ~340 m per DT_TRACK; position-vs-lagging-median is then
+    # always ≫ 80 m and cannot implement the published pop-in cliff.
+    if n >= window + 2:
+        dx = np.diff(x)
+        dy = np.diff(y)
+        for i in range(window + 1, n):
+            prev = slice(i - 1 - window, i - 1)
+            dx_med = np.median(dx[prev])
+            dy_med = np.median(dy[prev])
+            res_valid[i] = np.sqrt((dx[i - 1] - dx_med)**2 + (dy[i - 1] - dy_med)**2)
+            flags_valid[i] = res_valid[i] > 80.0   # meters
 
     residuals = np.full(n_full, np.nan)
     flags     = np.zeros(n_full, dtype=bool)

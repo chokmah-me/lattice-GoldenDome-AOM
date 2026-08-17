@@ -1,15 +1,20 @@
-@"
 # Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.env
+.env
 .venv/
 venv/
 
-# Results folder (plots are big)
-results/
+# Generated plots (already-tracked PNGs stay tracked)
+results/*
+!results/claim_verify_*
+!results/claim_holds_brief.md
+!results/integrity_*
+!results/i1_bindings.json
+!results/unbound_result_claims.md
+!results/proposed_bindings.json
 
 # OS junk
 .DS_Store
@@ -18,5 +23,3 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.log
-
-"@ | Out-File -Encoding utf8 .gitignore

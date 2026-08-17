@@ -1,0 +1,59 @@
+{
+  "schema": "goldendome-aom/i1-bindings/v1",
+  "note": "Mechanical I1 sources. Falsification keys are the published rounded figures; CCG re-run digits live under measured. Propagation and notional keys are this paper's first-principles / design defaults, not simulate.py.",
+  "falsification_published": {
+    "bypass_pct": 100.0,
+    "quant_success_pct": 0.06,
+    "mc_s000_approx_pct": 100.0,
+    "mc_s026_approx_pct": 100.0,
+    "mc_s053_approx_pct": 99.9,
+    "mc_s074_approx_pct": 99.0,
+    "mc_s100_approx_pct": 89.0,
+    "pinn_zero_s074_approx_pct": 96.0,
+    "pinn_zero_s100_approx_pct": 62.0,
+    "pinn_floor_pct": 72.0,
+    "coherence_below_50pct": 50.0
+  },
+  "falsification_measured_ccg_20260817": {
+    "p99_ms": 4.611,
+    "p999_ms": 4.819,
+    "quant_success_pct": 0.04,
+    "c3b_fp32": 0.719,
+    "c3b_threshold": 3.938,
+    "coherence_first_detect_m": 81.0,
+    "mc_s000_pct": 100.0,
+    "mc_s026_pct": 100.0,
+    "mc_s053_pct": 99.93,
+    "mc_s074_pct": 99.03,
+    "mc_s100_pct": 89.18,
+    "pinn_zero_s074_pct": 96.13,
+    "pinn_zero_s100_pct": 61.65,
+    "pinn_gap_pp": 27.53
+  },
+  "propagation_first_principles": {
+    "leo_zenith_rt_ms": 3.7,
+    "leo_5deg_rt_ms": 14.7,
+    "isl_rt_min_ms": 3.4,
+    "geo_to_ground_ms": 119.4,
+    "gs_six_station_avail_pct": 50.0
+  },
+  "notional_design_defaults": {
+    "check1_end_ms": 0.2,
+    "check2_end_ms": 0.5,
+    "check3_end_ms": 0.9,
+    "check4_end_ms": 1.4,
+    "check5_end_ms": 2.8,
+    "check6_end_ms": 3.3,
+    "check7_end_ms": 5.0,
+    "confidence_floor": 0.95,
+    "bft_majority": 0.6666666666666666,
+    "drift_separation_pct": 95.0,
+    "sophistication_max": 1.0
+  },
+  "prior_cited_tokens": {
+    "pandey_attack_success_pct": 99.0,
+    "sensors_energy_reduction_pct": 60.0,
+    "arxiv_pandey": 2512.06243,
+    "arxiv_guesmi": 2503.07058
+  }
+}

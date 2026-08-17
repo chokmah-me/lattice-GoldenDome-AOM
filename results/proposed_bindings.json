@@ -1,0 +1,385 @@
+{
+  "schema": "cd-manuscript-integrity-propose/v1",
+  "manuscript": "dyb-2026i-goldendome-R-v8.1.md",
+  "count": 42,
+  "candidates": [
+    {
+      "value": 3.7,
+      "token": "3.7",
+      "context": "------------------------ | | LEO direct downlink (550 km, zenith) | 1.8 | 3.7 | Best-case geometry. Ground station directly below. | | LEO direct",
+      "suggested_id": "leo-direct-3.7",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 14.7,
+      "token": "14.7",
+      "context": "irectly below. | | LEO direct downlink (550 km, 5\u00b0 elev) | 7.4 | 14.7 | Worst usable geometry before loss of signal. | | ISL mesh re",
+      "suggested_id": "irectly-below-leo-direct-downlink-14.7",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 3.4,
+      "token": "3.4",
+      "context": "signal. | | ISL mesh relay (1-6 hops, 500-5,000 km/hop) | 1.7-100 | 3.4-200 | SDA PWSA mesh. Hop count depends on constellation geometry and ground-stati",
+      "suggested_id": "signal-isl-mesh-relay-1-6-hops-50-3.4",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 119.4,
+      "token": "119.4",
+      "context": "| 237 | 474 | LEO to GEO (117.5 ms) + GEO to ground (119.4 ms). Legacy path. | | Hub processing (cloud inference) | - | 50-2,0",
+      "suggested_id": "237-474-leo-to-geo-117-5-ms-ge-119.4",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 50.0,
+      "token": "50%",
+      "context": "oughly 8%. With six globally distributed stations, generous estimates reach approximately 50% simultaneous availability, but this assumes ideal weather, no RF interference, and no adv",
+      "suggested_id": "oughly-8-with-six-globally-distribut-50%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 0.2,
+      "token": "0.2",
+      "context": "------------------ | ------------------------------------------------------------ | | 0.0-0.2 ms | 1. Schema Validation | Verify IntentCapsule structur",
+      "suggested_id": "0.2",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 0.5,
+      "token": "0.5",
+      "context": "| HALT. Log SCHEMA_FAIL to async sidecar. | | 0.2-0.5 ms | 2. MIO Hash Integrity | Compare mission_context hash",
+      "suggested_id": "halt-log-schema-fail-to-async-sideca-0.5",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 0.9,
+      "token": "0.9",
+      "context": "| HALT. MIO expired or chain broken. Escalate via async trace. | | 0.5-0.9 ms | 3. Physics Envelope + Cross-Modal Consistency | (3a) Fixed-point lookup again",
+      "suggested_id": "halt-mio-expired-or-chain-broken-esc-0.9",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 1.4,
+      "token": "1.4",
+      "context": "ion or cross-modal inconsistency. Increment spoof counter. Escalate to async BFT. | | 0.9-1.4 ms | 4. Temporal Coherence + Staleness TTL | Sliding-window median filter",
+      "suggested_id": "ion-or-cross-modal-inconsistency-inc-1.4",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 2.8,
+      "token": "2.8",
+      "context": "| HOLD. Anomalous initialization or stale data. Log TEMPORAL_FAIL. | | 1.4-2.8 ms | 5. Confidence Floor + Chaotic-Quantized PINN | Confidence floor (>= 0.95) is",
+      "suggested_id": "hold-anomalous-initialization-or-sta-2.8",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 0.95,
+      "token": "0.95",
+      "context": "1.4-2.8 ms | 5. Confidence Floor + Chaotic-Quantized PINN | Confidence floor (>= 0.95) is a single fixed-point comparison completing in nanoseconds. The remainder of the 1.4 m",
+      "suggested_id": "1-4-2-8-ms-5-confidence-floor-chaot-0.95",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 3.3,
+      "token": "3.3",
+      "context": "floor or elevated physics residual. Log entropy seed hash for post-hoc forensics. | | 2.8-3.3 ms | 6. Geo-fence + Local ISL Quorum | Verify target coordinates wit",
+      "suggested_id": "floor-or-elevated-physics-residual-l-3.3",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 0.6666666666666666,
+      "token": "2/3",
+      "context": "pproximate BFT vote with N nearest orbital neighbors over sub-ms optical ISL. Requires >= 2/3 local majority. Degraded-mode fallback to single-node authorization if ISL jammed, logs D",
+      "suggested_id": "pproximate-bft-vote-with-n-nearest-o-2/3",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 5.0,
+      "token": "5.0",
+      "context": "LD. Geo-fence violation or quorum failed. Defer. Escalate to full PBFT mesh vote. | | 3.3-5.0 ms | 7. Cryptographic Trace Commit | Write all check outputs, conf",
+      "suggested_id": "ld-geo-fence-violation-or-quorum-fai-5.0",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 50.0,
+      "token": "50%",
+      "context": "tinuity exceeds approximately 80 meters. Below that threshold, detection rates drop below 50%, creating an adversarial sweet spot where both Check 3 sub-checks pass and coherence chec",
+      "suggested_id": "tinuity-exceeds-approximately-80-met-50%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 99.0,
+      "token": "99%",
+      "context": "tization reduces backdoor defense detection to near zero while attack success stays above 99% on the classification tasks studied in Pandey and Ye (arXiv:2512.06243). Check 5 uses cha",
+      "suggested_id": "tization-reduces-backdoor-defense-de-99%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 0.06,
+      "token": "0.06",
+      "context": "NT8 threshold equal to FP32 threshold), a zero-knowledge adversary achieves approximately 0.06% bypass rate with features normalized to O(1) variance. This figure is misleadingly low.",
+      "suggested_id": "nt8-threshold-equal-to-fp32-threshol-0.06",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 100.0,
+      "token": "100%",
+      "context": ". An adversary who can manipulate the timestamp field by any amount \u0394t \u2264 -500 ms achieves 100% bypass of the staleness check. This is a step function, not a probability. The attack sur",
+      "suggested_id": "an-adversary-who-can-manipulate-the--100%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 0.06,
+      "token": "0.06",
+      "context": "ration with unit-scale features, zero-knowledge adversarial success rate is approximately 0.06%. This figure is an artifact of favorable feature scaling. The adversarial success rate c",
+      "suggested_id": "ration-with-unit-scale-features-zero-0.06",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 99.9,
+      "token": "99.9",
+      "context": "| ~100 | | 0.53 (semi-capable) | ~99.9 | | 0.74 (nation-state) | ~99 |",
+      "suggested_id": "100-0-53-semi-capable-99-9-99.9",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 99.0,
+      "token": "99%",
+      "context": "nation-state + calibration access) | ~89 | Combined detection exceeds 99% for adversaries below sophistication 0.75. At nation-state sophistication (s=0.74), combi",
+      "suggested_id": "nation-state-calibration-access-89-99%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 72.0,
+      "token": "72%",
+      "context": "-check detection probability across the full sophistication range; the PINN flat line at ~72% is the floor the hardware entropy source provides against a zero-knowledge adversary. Fig",
+      "suggested_id": "check-detection-probability-across-t-72%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 62.0,
+      "token": "62%",
+      "context": "roed out, the remaining 6-check model yields combined detection at s=1.0 of approximately 62%, down from ~89% with the full 7-check model. At s=0.74 (nation-state), 6-check detection",
+      "suggested_id": "roed-out-the-remaining-6-check-model-62%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 89.0,
+      "token": "89%",
+      "context": "maining 6-check model yields combined detection at s=1.0 of approximately 62%, down from ~89% with the full 7-check model. At s=0.74 (nation-state), 6-check detection is approximately",
+      "suggested_id": "maining-6-check-model-yields-combine-89%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 96.0,
+      "token": "96%",
+      "context": "with the full 7-check model. At s=0.74 (nation-state), 6-check detection is approximately 96% versus ~99% with all 7 checks. The gap widens sharply at high sophistication: the PINN co",
+      "suggested_id": "with-the-full-7-check-model-at-s-0-7-96%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 99.0,
+      "token": "99%",
+      "context": "l 7-check model. At s=0.74 (nation-state), 6-check detection is approximately 96% versus ~99% with all 7 checks. The gap widens sharply at high sophistication: the PINN contributes li",
+      "suggested_id": "l-7-check-model-at-s-0-74-nation-sta-99%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 89.0,
+      "token": "89%",
+      "context": "ectly: the blue and red curves track together until s \u2248 0.6, then diverge sharply to the ~89% vs. ~62% endpoints at s = 1.0. **Caveat on per-check models and the sophistication scala",
+      "suggested_id": "ectly-the-blue-and-red-curves-track--89%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 62.0,
+      "token": "62%",
+      "context": "e blue and red curves track together until s \u2248 0.6, then diverge sharply to the ~89% vs. ~62% endpoints at s = 1.0. **Caveat on per-check models and the sophistication scalar.** The",
+      "suggested_id": "e-blue-and-red-curves-track-together-62%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 1.0,
+      "token": "1.0",
+      "context": "Monte Carlo simulation (Section 6.4, PINN-zeroed scenario) shows combined detection at s=1.0 drops from ~89% to ~62%. The PINN accounts for an approximately 27 percentage-point gap a",
+      "suggested_id": "monte-carlo-simulation-section-6-4-p-1.0",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 89.0,
+      "token": "89%",
+      "context": "ulation (Section 6.4, PINN-zeroed scenario) shows combined detection at s=1.0 drops from ~89% to ~62%. The PINN accounts for an approximately 27 percentage-point gap at maximum sophis",
+      "suggested_id": "ulation-section-6-4-pinn-zeroed-scen-89%",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 95.0,
+      "token": "95%",
+      "context": "esholds (the 5 ms compute budget, the 0.95 confidence floor, the 2\u03c3 calibration gate, the 95% drift separation requirement, the 80 m temporal coherence detection threshold) are propos",
+      "suggested_id": "esholds-the-5-ms-compute-budget-the--95%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 89.0,
+      "token": "89%",
+      "context": "contribution removed. At maximum adversary sophistication, combined detection drops from ~89% to ~62%. The PINN is the single largest per-check contributor at high sophistication, but",
+      "suggested_id": "contribution-removed-at-maximum-adve-89%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 60.0,
+      "token": "60%",
+      "context": "--------------------------- | | Wavelet/Fourier feature extraction achieves F1 ~0.92 with 60% energy reduction | Sensors 25(21):6629 (Oct 2025) | High (p",
+      "suggested_id": "wavelet-60%",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 99.0,
+      "token": "99%",
+      "context": "| INT8 quantization reduces backdoor defense detection to near 0%; attack success stays > 99% | Pandey and Ye, \"Quantization Blindspots: How Model Compression Breaks Backdoor Defenses",
+      "suggested_id": "int8-quantization-reduces-backdoor-d-99%",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 2512.06243,
+      "token": "2512.06243",
+      "context": "and Ye, \"Quantization Blindspots: How Model Compression Breaks Backdoor Defenses,\" arXiv:2512.06243 (Dec 2025) | Medium (preprint, unreplicated, two authors, classification tasks only) | Cl",
+      "suggested_id": "and-ye-quantization-blindspots-how-m-2512.06243",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 2503.07058,
+      "token": "2503.07058",
+      "context": ", Ouni, and Shafique, \"Breaking the Limits of Quantization-Aware Defenses: QADT-R,\" arXiv:2503.07058 (Mar 2025) | High (preprint, thorough experimental design) | Physical spoo",
+      "suggested_id": "ouni-and-shafique-breaking-the-limi-2503.07058",
+      "in_table": true,
+      "bucket": "table_cell",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 99.0,
+      "token": "99%",
+      "context": "etric per-check models, Monte Carlo simulation places combined detection at approximately 99% against a nation-state adversary (s=0.74) and approximately 89% against a nation-state wi",
+      "suggested_id": "etric-per-check-models-monte-carlo-s-99%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 89.0,
+      "token": "89%",
+      "context": "etection at approximately 99% against a nation-state adversary (s=0.74) and approximately 89% against a nation-state with calibration access (s=1.0). With the PINN assumption removed,",
+      "suggested_id": "etection-at-approximately-99-against-89%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 62.0,
+      "token": "62%",
+      "context": ".0). With the PINN assumption removed, the remaining 6-check system detects approximately 62% of maximum-sophistication attacks. These numbers reflect parametric assumptions, not meas",
+      "suggested_id": "0-with-the-pinn-assumption-removed-t-62%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 89.0,
+      "token": "89%",
+      "context": "he 7-check matrix, the 5 ms budget, the clock-trust requirement, the simulation results (~89% at s=1.0, ~99% at s=0.74, ~62% PINN-zeroed), and the Phase GD-0 open items. None of the p",
+      "suggested_id": "he-7-check-matrix-the-5-ms-budget-th-89%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 99.0,
+      "token": "99%",
+      "context": "ix, the 5 ms budget, the clock-trust requirement, the simulation results (~89% at s=1.0, ~99% at s=0.74, ~62% PINN-zeroed), and the Phase GD-0 open items. None of the program news sin",
+      "suggested_id": "ix-the-5-ms-budget-the-clock-trust-r-99%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    },
+    {
+      "value": 62.0,
+      "token": "62%",
+      "context": "get, the clock-trust requirement, the simulation results (~89% at s=1.0, ~99% at s=0.74, ~62% PINN-zeroed), and the Phase GD-0 open items. None of the program news since March bears o",
+      "suggested_id": "get-the-clock-trust-requirement-the--62%",
+      "in_table": false,
+      "bucket": "other",
+      "suggested_in_artifacts": false
+    }
+  ]
+}

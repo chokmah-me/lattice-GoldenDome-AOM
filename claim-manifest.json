@@ -1,0 +1,35 @@
+{
+  "schema": "cd-claim-gate/v1",
+  "claims": [
+    {
+      "id": "A-ghost",
+      "description": "Staleness bypass is binary at Δt ≤ −500 ms; P99/P99.9 stay inside the 5 ms budget.",
+      "command": ["python", "claims/verify_a_ghost.py"],
+      "timeout_sec": 300
+    },
+    {
+      "id": "B-quant",
+      "description": "Nominal INT8-pass / FP32-fail adversarial success is ~0.06% (isolated seed 42).",
+      "command": ["python", "claims/verify_b_quant.py"],
+      "timeout_sec": 600
+    },
+    {
+      "id": "C-lethal",
+      "description": "Default 50 m pop-in passes Checks 3a/3b; coherence 50%-detect crossover ~80 m.",
+      "command": ["python", "claims/verify_c_lethal.py"],
+      "timeout_sec": 600
+    },
+    {
+      "id": "D-analytical",
+      "description": "Analytical 7-check combined detection stays above 90% until s ≈ 0.85.",
+      "command": ["python", "claims/verify_d_analytical.py"],
+      "timeout_sec": 60
+    },
+    {
+      "id": "E-montecarlo",
+      "description": "50k×20 seed=42 Monte Carlo reproduces the published full and PINN-zeroed table.",
+      "command": ["python", "claims/verify_e_montecarlo.py"],
+      "timeout_sec": 600
+    }
+  ]
+}

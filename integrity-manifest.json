@@ -1,0 +1,180 @@
+{
+  "schema": "cd-manuscript-integrity/v1",
+  "manuscript": "dyb-2026i-goldendome-R-v8.1.md",
+  "i1_policy": "strict",
+  "results": [
+    "results/i1_bindings.json",
+    "results/claim_verify_meta.json"
+  ],
+  "claimed_tables": ["results/i1_bindings.json"],
+  "claimed_numbers": [
+    {
+      "id": "A-bypass-pct",
+      "value": 100.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "falsification_published.bypass_pct"
+    },
+    {
+      "id": "B-quant-pct-published",
+      "value": 0.06,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "falsification_published.quant_success_pct"
+    },
+    {
+      "id": "E-s074-approx",
+      "value": 99.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "falsification_published.mc_s074_approx_pct"
+    },
+    {
+      "id": "E-s100-approx",
+      "value": 89.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "falsification_published.mc_s100_approx_pct"
+    },
+    {
+      "id": "E-pinn-zero-s100-approx",
+      "value": 62.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "falsification_published.pinn_zero_s100_approx_pct"
+    },
+    {
+      "id": "E-pinn-zero-s074-approx",
+      "value": 96.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "falsification_published.pinn_zero_s074_approx_pct"
+    },
+    {
+      "id": "E-s053-approx",
+      "value": 99.9,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "falsification_published.mc_s053_approx_pct"
+    },
+    {
+      "id": "D-pinn-floor",
+      "value": 72.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "falsification_published.pinn_floor_pct"
+    },
+    {
+      "id": "C-coherence-50pct",
+      "value": 50.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "falsification_published.coherence_below_50pct"
+    },
+    {
+      "id": "leo-zenith-rt",
+      "value": 3.7,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "propagation_first_principles.leo_zenith_rt_ms"
+    },
+    {
+      "id": "leo-5deg-rt",
+      "value": 14.7,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "propagation_first_principles.leo_5deg_rt_ms"
+    },
+    {
+      "id": "isl-rt-min",
+      "value": 3.4,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "propagation_first_principles.isl_rt_min_ms"
+    },
+    {
+      "id": "geo-ground",
+      "value": 119.4,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "propagation_first_principles.geo_to_ground_ms"
+    },
+    {
+      "id": "check1-end",
+      "value": 0.2,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.check1_end_ms"
+    },
+    {
+      "id": "check2-end",
+      "value": 0.5,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.check2_end_ms"
+    },
+    {
+      "id": "check3-end",
+      "value": 0.9,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.check3_end_ms"
+    },
+    {
+      "id": "check4-end",
+      "value": 1.4,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.check4_end_ms"
+    },
+    {
+      "id": "check5-end",
+      "value": 2.8,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.check5_end_ms"
+    },
+    {
+      "id": "check6-end",
+      "value": 3.3,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.check6_end_ms"
+    },
+    {
+      "id": "check7-end",
+      "value": 5.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.check7_end_ms"
+    },
+    {
+      "id": "confidence-floor",
+      "value": 0.95,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.confidence_floor"
+    },
+    {
+      "id": "bft-majority",
+      "value": 0.6666666666666666,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.bft_majority"
+    },
+    {
+      "id": "drift-sep",
+      "value": 95.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.drift_separation_pct"
+    },
+    {
+      "id": "s-max",
+      "value": 1.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "notional_design_defaults.sophistication_max"
+    },
+    {
+      "id": "prior-pandey-asr",
+      "value": 99.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "prior_cited_tokens.pandey_attack_success_pct"
+    },
+    {
+      "id": "prior-sensors-energy",
+      "value": 60.0,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "prior_cited_tokens.sensors_energy_reduction_pct"
+    },
+    {
+      "id": "arxiv-pandey-id",
+      "value": 2512.06243,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "prior_cited_tokens.arxiv_pandey"
+    },
+    {
+      "id": "arxiv-guesmi-id",
+      "value": 2503.07058,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "prior_cited_tokens.arxiv_guesmi"
+    }
+  ]
+}

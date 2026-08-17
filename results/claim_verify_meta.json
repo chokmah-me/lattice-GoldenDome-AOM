@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "schema": "cd-claim-gate/v1",
+  "project": "C:\\Users\\Elke Shayna\\Documents\\00Dev\\lattice-GoldenDome-AOM",
+  "manifest": "C:\\Users\\Elke Shayna\\Documents\\00Dev\\lattice-GoldenDome-AOM\\claim-manifest.json",
+  "claims": [
+    {
+      "id": "A-ghost",
+      "ok": true,
+      "command": [
+        "python",
+        "claims/verify_a_ghost.py"
+      ],
+      "exit_code": 0,
+      "duration_ms": 15131,
+      "log_tail": "A-ghost: bypass@\u0394t\u2264\u2212500ms = 100% (500 points); P99=4.611 ms; P99.9=4.819 ms\nOK: A-ghost cliff + latency (P99=4.611, P99.9=4.819 vs 4.61/4.82)",
+      "errors": [],
+      "golden_ok": null,
+      "golden_details": []
+    },
+    {
+      "id": "B-quant",
+      "ok": true,
+      "command": [
+        "python",
+        "claims/verify_b_quant.py"
+      ],
+      "exit_code": 0,
+      "duration_ms": 14479,
+      "log_tail": "B-quant: nominal success=0.040% (8/20000); fp32_thresh=3.938\nOK: B-quant isolated seed=42 rate=0.040% (published ~0.06%; cap 0.5%)",
+      "errors": [],
+      "golden_ok": null,
+      "golden_details": []
+    },
+    {
+      "id": "C-lethal",
+      "ok": true,
+      "command": [
+        "python",
+        "claims/verify_c_lethal.py"
+      ],
+      "exit_code": 0,
+      "duration_ms": 13537,
+      "log_tail": "C-lethal default 50 m: 3a_pass=True 3b_fp32=0.719 thresh=3.938 3b_pass=True\nC-lethal: Check 4 first-detect jump \u2248 81.0 m (published ~80 m)\nOK: C-lethal 3a/3b pass at 50 m (FP32=0.72, thr=3.94); 200 m detected; crossover=81 m",
+      "errors": [],
+      "golden_ok": null,
+      "golden_details": []
+    },
+    {
+      "id": "D-analytical",
+      "ok": true,
+      "command": [
+        "python",
+        "claims/verify_d_analytical.py"
+      ],
+      "exit_code": 0,
+      "duration_ms": 13711,
+      "log_tail": "D-analytical: p(s=0.7)=99.27%  p(s=0.85)=96.81%  p(s=1.0)=89.14%  n(s<0.85 and p\u22640.9)=0\nOK: D-analytical combined >90% for all s<0.85 (s=0.7 \u2192 99.3%; s=1.0 \u2192 89.1%)",
+      "errors": [],
+      "golden_ok": null,
+      "golden_details": []
+    },
+    {
+      "id": "E-montecarlo",
+      "ok": true,
+      "command": [
+        "python",
+        "claims/verify_e_montecarlo.py"
+      ],
+      "exit_code": 0,
+      "duration_ms": 16623,
+      "log_tail": "E-montecarlo full 7-check (nearest linspace points):\n  s_req=0.00 s=0.0000 mean=100.00% SE=0.000 expected=100.00 tol=0.25 \u0394=0.00\n  s_req=0.26 s=0.2632 mean=100.00% SE=0.000 expected=100.00 tol=0.25 \u0394=0.00\n  s_req=0.53 s=0.5263 mean=99.93% SE=0.012 expected=99.93 tol=0.25 \u0394=0.00\n  s_req=0.74 s=0.7368 mean=99.03% SE=0.044 expected=99.03 tol=0.25 \u0394=0.00\n  s_req=1.00 s=1.0000 mean=89.18% SE=0.139 expected=89.18 tol=0.28 \u0394=0.00\nE-montecarlo PINN-zeroed:\n  s_req=0.74 s=0.7368 mean=96.13% expected=96.1 tol=0.25 \u0394=0.03\n  s_req=1.00 s=1.0000 mean=61.65% expected=61.7 tol=0.43 \u0394=0.05\nE-montecarlo PINN gap at s=1: 27.53 pp (published 27.5)\nOK: E-montecarlo 50000\u00d720 seed=42 matches published table within max(0.25 pp, 2\u00b7SE); gap=27.53 pp",
+      "errors": [],
+      "golden_ok": null,
+      "golden_details": []
+    }
+  ],
+  "errors": [],
+  "timestamp_utc": "2026-08-17T02:11:10.947278+00:00",
+  "policy": {
+    "default_timeout_sec": 600,
+    "self_certify_by_reading": false
+  },
+  "status": "pass"
+}

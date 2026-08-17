@@ -15,7 +15,8 @@ operates under strict latency and availability constraints (474 ms LEO-to-GEO re
 ~8% ground-station duty cycle) that preclude human-in-the-loop authorization.
 
 Companion paper: Bilar (2026), *Golden Dome Latency Governance: Autonomous Operations 
-Model Extended to Boost-Phase Intercept Timelines*, DOI: 10.5281/zenodo.19368682  
+Model Extended to Boost-Phase Intercept Timelines*, DOI: 10.5281/zenodo.19368681  
+(concept; always latest). v8.1 PDF: 10.5281/zenodo.21971208. v7 PDF: 10.5281/zenodo.19368682.
 Companion AOM paper: Bilar (2026), *Anduril LatticeOS: Autonomous Operations Model*, 
 DOI: 10.5281/zenodo.19266807
 
@@ -105,7 +106,7 @@ pip install -r requirements.txt
 python simulate.py
 ```
 
-Output charts saved to `results/`:
+Plots write to `results/` next to `simulate.py` (no Google Drive path).
 
 | File | Content |
 |---|---|
@@ -115,6 +116,32 @@ Output charts saved to `results/`:
 | `D_sensitivity.png` | Per-check detection curves vs. adversary sophistication |
 | `E_sensitivity_full.png` | Monte Carlo combined detection + PINN-zeroed comparison |
 
+Re-run plots after pulling if you need Figures A/C to match the current Check 4 / Scenario A predicates.
+
+### Claim verification
+
+Load-bearing numbers are declared in `claim-manifest.json` and checked by `claims/verify_*.py`. A green gate is an executed re-run, not a read of the source.
+
+```bash
+python claims/verify_a_ghost.py
+python claims/verify_b_quant.py
+python claims/verify_c_lethal.py
+python claims/verify_d_analytical.py
+python claims/verify_e_montecarlo.py
+```
+
+Or the whole set, if the computational-claim-gate package is on disk:
+
+```bash
+python path/to/computational-claim-gate/scripts/verify_claim_project.py --project .
+```
+
+Evidence: `results/claim_verify_meta.json`, `results/claim_verify_out.txt`, `results/claim_holds_brief.md`.
+
+Manuscript number/cite integrity (v8.1) is a separate pass: `integrity-manifest.json` → `results/integrity_audit.json`. That pass is structural, not scientific verification.
+
+Do not run `Esimulate.py`. It is a leftover v4 4-check Monte Carlo that overrides the v5 7-check model.
+
 ---
 
 ## Caveats
@@ -123,6 +150,10 @@ The per-check detection models (D and E) are parametric assumptions informed by
 Scenarios A-C and ML security literature. They are not measured hardware failure 
 rates. The combined detection figures are only as reliable as those assumptions. 
 Phase GD-0 must replace them with measured rates on target rad-tolerant hardware.
+
+Check 4's 80 m pop-in test is a residual on **consecutive position updates**, not 
+absolute position vs a lagging median. The Scenario A cliff is 100% bypass at 
+Δt ≤ −500 ms when Check 4 reads the payload timestamp.
 
 ---
 
