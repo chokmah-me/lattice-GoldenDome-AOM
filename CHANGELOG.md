@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — 2026-08-17 — Tufte figure pass (no remint)
+
+- Figure D (`results/D_sensitivity.png`): 7-check overlay → 2×4 small
+  multiples, shared 0–100 frame; independence formula and source on the figure.
+- Figure A (`results/A_ghost_attack.png`): boxed callouts removed; n and
+  P99.9 vs 5 ms limit labeled.
+- Paper remains v8.1 / Zenodo `21971208`. Software remains 1.0.1 /
+  `21979227` (figures-only; remint deferred).
+
 ## 1.0.1 software — 2026-08-17 — GitHub tag `1.0.1`
 
 Claim-gate harness, Check 4 / Scenario A predicate repairs, regenerated

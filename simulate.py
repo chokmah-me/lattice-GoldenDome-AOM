@@ -703,44 +703,50 @@ COLORS = {
 }
 
 def plot_ghost_attack(res: dict, path: Path):
-    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-    fig.suptitle("Scenario A: Ghost-in-the-Matrix Attack", fontsize=13, fontweight="bold")
+    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(7.2, 3.2))
 
-    ax = axes[0]
-    ax.plot(res["deltas"], res["far_curve"], color=COLORS["red"], lw=1.5)
-    ax.axvline(0, color=COLORS["gray"], ls="--", lw=0.8, label="No offset")
-    ax.axvline(-500, color=COLORS["orange"], ls=":", lw=1.2, label="Δt = −500 ms (TTL boundary)")
-    ax.set_xlabel("Clock offset Δt (ms)")
-    ax.set_ylabel("False Acceptance (1=pass, 0=hold)")
-    ax.set_title("Staleness Check: Pass Rate vs. Clock Offset")
-    ax.set_ylim(-0.05, 1.1)
-    ax.legend(fontsize=9)
-    ax.text(0.04, 0.15,
-            "Adversary injects Δt < 0 to make\nstale track appear fresh.\n"
-            "Full bypass achieved at Δt ≤ −500 ms.",
-            transform=ax.transAxes, fontsize=8.5, color=COLORS["red"],
-            bbox=dict(boxstyle="round,pad=0.3", fc="#fff0f0", ec=COLORS["red"], alpha=0.8))
+    ax.plot(res["deltas"], res["far_curve"], color=COLORS["red"], lw=1.4)
+    ax.axvline(-500, color="0.35", ls=":", lw=0.8)
+    ax.set_xlabel("clock offset Δt (ms)")
+    ax.set_ylabel("false acceptance  (1 = pass)")
+    ax.set_ylim(0, 1.05)
+    ax.set_xlim(res["deltas"][0], res["deltas"][-1])
+    ax.text(0.02, 1.04, "(a)  staleness check vs offset",
+            transform=ax.transAxes, fontsize=8.5, va="bottom")
+    ax.text(-500, 1.02, "TTL −500 ms", fontsize=7, color="0.35",
+            ha="center", va="bottom")
+    ax.text(-980, 0.55, "full bypass\nΔt ≤ −500 ms",
+            fontsize=7.5, color=COLORS["red"], va="center")
+    _tufte_ax(ax)
+    ax.spines["left"].set_bounds(0, 1)
+    ax.spines["bottom"].set_bounds(res["deltas"][0], res["deltas"][-1])
 
-    ax2 = axes[1]
-    ax2.hist(res["latency_dist"], bins=100, density=True, color=COLORS["blue"],
-             alpha=0.7, label="auditor.latency_ms")
-    ax2.axvline(5.0, color=COLORS["red"], lw=1.5, ls="--", label="5.0 ms hard limit")
-    ax2.axvline(res["p99_ms"], color=COLORS["orange"], lw=1.2, ls=":",
-                label=f"P99 = {res['p99_ms']:.2f} ms")
-    ax2.axvline(res["p999_ms"], color=COLORS["purple"], lw=1.2, ls="-.",
-                label=f"P99.9 = {res['p999_ms']:.2f} ms")
-    ax2.set_xlabel("Auditor latency (ms)")
-    ax2.set_ylabel("Density")
-    ax2.set_title("Latency Distribution — Log-normal Tail (SEU events)")
-    ax2.legend(fontsize=9)
-    ax2.text(0.55, 0.72,
-             f"Long tail: gate stays open\nat P99.9 = {res['p999_ms']:.2f} ms\n"
-             f"({100*(res['p999_ms']>5.0):.0f}% chance > hard limit)",
-             transform=ax2.transAxes, fontsize=8.5, color=COLORS["purple"],
-             bbox=dict(boxstyle="round,pad=0.3", fc="#f8f0ff", ec=COLORS["purple"], alpha=0.8))
+    ax2.hist(res["latency_dist"], bins=80, density=True,
+             color=COLORS["blue"], alpha=0.65, linewidth=0)
+    ax2.axvline(5.0, color=COLORS["red"], lw=1.0, ls="--")
+    ax2.axvline(res["p999_ms"], color=COLORS["purple"], lw=1.0, ls="-.")
+    ax2.set_xlabel("auditor latency (ms)")
+    ax2.set_ylabel("density")
+    ax2.text(0.02, 1.04, "(b)  auditor latency",
+             transform=ax2.transAxes, fontsize=8.5, va="bottom")
+    ymax = ax2.get_ylim()[1]
+    ax2.text(5.0, ymax, "  5 ms limit", fontsize=7, color=COLORS["red"],
+             va="top", ha="left")
+    ax2.text(res["p999_ms"], ymax * 0.55,
+             f" P99.9 = {res['p999_ms']:.2f} ms",
+             fontsize=7, color=COLORS["purple"], va="bottom", ha="left")
+    _tufte_ax(ax2)
 
-    plt.tight_layout()
-    fig.savefig(path / "A_ghost_attack.png", dpi=150, bbox_inches="tight")
+    fig.text(
+        0.01, 0.01,
+        f"n = {len(res['latency_dist'])} latency samples; offset sweep in "
+        f"run_ghost_attack_sweep. P99.9 "
+        f"{'exceeds' if res['p999_ms'] > 5.0 else 'is within'} the 5 ms hard limit. "
+        f"simulate.py.",
+        fontsize=6.5, color="0.4",
+    )
+    fig.tight_layout(rect=[0, 0.08, 1, 1])
+    fig.savefig(path / "A_ghost_attack.png", dpi=300, bbox_inches="tight")
     plt.close(fig)
     print(f"  [A] Ghost attack plot saved.")
 
@@ -921,46 +927,58 @@ def plot_lethal_compliance(lc_res: dict, track_data: dict, path: Path):
     plt.close(fig)
     print(f"  [C] Lethal compliance plot saved.")
 
+def _tufte_ax(ax):
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["left"].set_linewidth(0.6)
+    ax.spines["bottom"].set_linewidth(0.6)
+    ax.tick_params(length=2.5, width=0.6, labelsize=7)
+    ax.yaxis.set_ticks_position("left")
+    ax.xaxis.set_ticks_position("bottom")
+
+
 def plot_sensitivity(sens: dict, path: Path):
-    """Plot D: per-check analytical sensitivity curves."""
-    fig, axes = plt.subplots(1, 2, figsize=(13, 5))
-    fig.suptitle("Sensitivity Analysis: Detection Probability vs. Adversarial Sophistication",
-                 fontsize=13, fontweight="bold")
-
+    """Plot D: 7-check analytical sensitivity as small multiples + combined."""
     s = sens["sophistication"]
-    ax = axes[0]
-    ax.plot(s, sens["p_schema"]*100,    color=COLORS["gray"],   lw=1.5, label="Schema (structural)")
-    ax.plot(s, sens["p_physics"]*100,   color=COLORS["blue"],   lw=1.5, label="Physics envelope")
-    ax.plot(s, sens["p_temporal"]*100,  color=COLORS["green"],  lw=1.5, label="Temporal coherence")
-    ax.plot(s, sens["p_int8_mah"]*100,  color=COLORS["orange"], lw=1.5, label="INT8 Mahalanobis")
-    ax.plot(s, sens["p_pinn"]*100,      color=COLORS["purple"], lw=1.5, label="PINN (chaotic quant.)")
-    ax.plot(s, sens["p_geofence"]*100,  color=COLORS["red"],    lw=1.5, label="Geo-fence / quorum")
-    ax.plot(s, sens["p_staleness"]*100, color="#888800",        lw=1.5, ls="--", label="Staleness TTL")
-    ax.set_xlabel("Adversary sophistication (0 = random, 1 = nation-state w/ calibration access)")
-    ax.set_ylabel("P(detected) per check (%)")
-    ax.set_title("Per-Check Detection Probability")
-    ax.legend(fontsize=8, loc="lower left")
-    ax.set_ylim(-5, 105)
+    panels = [
+        ("schema",           sens["p_schema"] * 100),
+        ("physics envelope", sens["p_physics"] * 100),
+        ("temporal",         sens["p_temporal"] * 100),
+        ("INT8 Mahalanobis", sens["p_int8_mah"] * 100),
+        ("PINN",             sens["p_pinn"] * 100),
+        ("geo-fence",        sens["p_geofence"] * 100),
+        ("staleness TTL",    sens["p_staleness"] * 100),
+        ("combined (any)",   sens["p_detected_combined"] * 100),
+    ]
 
-    ax2 = axes[1]
-    ax2.plot(s, sens["p_detected_combined"]*100, color=COLORS["blue"], lw=2.5,
-             label="Combined (any check catches)")
-    ax2.fill_between(s, sens["p_detected_combined"]*100, alpha=0.15, color=COLORS["blue"])
-    ax2.set_xlabel("Adversary sophistication")
-    ax2.set_ylabel("P(detected) — combined all 7 checks (%)")
-    ax2.set_title("Combined 7-Check Detection Rate")
-    ax2.set_ylim(-5, 105)
-    ax2.axhline(50, color=COLORS["gray"], ls="--", lw=0.8, label="50% line")
+    fig, axes = plt.subplots(2, 4, figsize=(7.2, 3.8), sharex=True, sharey=True)
+    ink = "#1a1a1a"
+    for ax, (name, y) in zip(axes.ravel(), panels):
+        _tufte_ax(ax)
+        lw = 1.6 if name.startswith("combined") else 1.2
+        ax.plot(s, y, color=ink, lw=lw, solid_capstyle="round")
+        ax.set_xlim(0, 1)
+        ax.set_ylim(0, 100)
+        ax.set_xticks([0, 0.5, 1.0])
+        ax.set_yticks([0, 50, 100])
+        ax.text(0.03, 0.06, name, transform=ax.transAxes,
+                fontsize=7.5, va="bottom", ha="left", color=ink)
+        ax.text(0.97, 0.06, f"{y[-1]:.0f}%", transform=ax.transAxes,
+                fontsize=7, va="bottom", ha="right", color="0.35")
+        ax.spines["left"].set_bounds(0, 100)
+        ax.spines["bottom"].set_bounds(0, 1)
 
-    danger_zone_start = 0.7
-    ax2.axvspan(danger_zone_start, 1.0, alpha=0.1, color=COLORS["red"])
-    ax2.text(0.73, 20, "Nation-state\nzero-knowledge\nzone",
-             fontsize=9, color=COLORS["red"],
-             bbox=dict(boxstyle="round,pad=0.2", fc="#fff0f0", ec=COLORS["red"], alpha=0.7))
-    ax2.legend(fontsize=9)
-
-    plt.tight_layout()
-    fig.savefig(path / "D_sensitivity.png", dpi=150, bbox_inches="tight")
+    fig.supxlabel("adversary sophistication  (0 = random,  1 = nation-state)",
+                  fontsize=8, y=0.08)
+    fig.supylabel("P(detected)  (%)", fontsize=8)
+    fig.text(
+        0.01, 0.01,
+        "Analytical 7-check model (independence). Combined = 1 − ∏(1 − p_i). "
+        "PINN is flat by construction. simulate.py / sensitivity_analysis.",
+        fontsize=6.5, color="0.4",
+    )
+    fig.tight_layout(rect=[0, 0.08, 1, 1])
+    fig.savefig(path / "D_sensitivity.png", dpi=300, bbox_inches="tight")
     plt.close(fig)
     print(f"  [D] Sensitivity analysis plot saved.")
 
