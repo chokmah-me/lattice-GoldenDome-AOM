@@ -6,8 +6,9 @@
   multiples, shared 0–100 frame; independence formula and source on the figure.
 - Figure A (`results/A_ghost_attack.png`): boxed callouts removed; n and
   P99.9 vs 5 ms limit labeled.
-- Paper remains v8.1 / Zenodo `21971208`. Software remains 1.0.1 /
-  `21979227` (figures-only; remint deferred).
+- Paper md now embeds Figures A–E from `results/`. `dyb-2026i-goldendome-R-v8.1.pdf`
+  rebuilt in Typora. Paper remains v8.1 / Zenodo `21971208`. Software remains
+  1.0.1 / `21979227` (remint deferred).
 
 ## 1.0.1 software — 2026-08-17 — GitHub tag `1.0.1`
 

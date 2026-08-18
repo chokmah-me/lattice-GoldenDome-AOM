@@ -198,6 +198,8 @@ The adversary manipulates track timestamps to make stale data appear fresh, bypa
 
 **Finding:** The staleness check is a binary gate on timestamp authenticity. At clock offset Δt ≤ -500 ms, bypass is 100%. This is not a probabilistic degradation; it is complete circumvention. The defense requires authenticated timestamps, not a tighter TTL. See Section 4.3. The staleness bypass is a step function, not a gradient: Figure A (left panel) shows the binary cliff at Δt = −500 ms. The right panel shows the auditor latency distribution; P99.9 = 4.82 ms stays inside the 5 ms budget under the modeled SEU jitter.
 
+![Figure A: Staleness check vs clock offset (left) and auditor latency (right).](results/A_ghost_attack.png)
+
 **Latency validation:** Auditor latency under a log-normal SEU jitter model shows P99 = 4.61 ms and P99.9 = 4.82 ms. Both fall inside the 5 ms budget. The latency architecture holds under the modeled radiation environment.
 
 ## 6.2 Scenario B: Quantization-Aware Spoofing (INT8 vs. FP32)
@@ -206,6 +208,8 @@ The adversary exploits the precision gap between FP32 Mahalanobis distance (used
 
 **Finding:** At nominal configuration with unit-scale features, zero-knowledge adversarial success rate is approximately 0.06%. This figure is an artifact of favorable feature scaling. The adversarial success rate climbs monotonically as the INT8 threshold loosens relative to FP32, and scales with feature dynamic range. With raw sensor features spanning 3-4 orders of magnitude, the effective gap widens proportionally. The chaotic Lorenz quantization defense is sound in principle but depends on feature normalization to a controlled variance before the Mahalanobis computation. This normalization requirement is not optional. Figure B shows the adversarial cluster in FP32/INT8 score space (left), the quantization precision-loss distribution (center), and the monotonic climb in adversarial success rate as the INT8 threshold loosens relative to FP32 (right).
 
+![Figure B: Quantization-aware spoof — score space, precision-loss distribution, and INT8 threshold sweep.](results/B_quant_spoof.png)
+
 ## 6.3 Scenario C: Lethal Compliance (Physics-Valid, Temporally Incoherent)
 
 The adversary injects a track that is physically valid at every point where it exists (Mach 5-15, sub-10g G-load) but appears abruptly with no prior track history ('cold start' injection).
@@ -213,6 +217,8 @@ The adversary injects a track that is physically valid at every point where it e
 **Finding:** The simulation tests the two sub-checks of Check 3 independently against the adversarial track. The kinematic bounds sub-check (Check 3a) passes at all tested discontinuity magnitudes, as designed: the adversary's track stays within speed and G-load limits. The cross-modal Mahalanobis sub-check (Check 3b), using kinematic-feature proxies, also passes the adversarial track at the default 50 m pop-in offset (FP32 score = 0.7, threshold = 3.9). This is because the adversarial track's aggregate kinematic statistics (mean speed, mean acceleration, etc.) remain close to the genuine track's calibration distribution even though the track appeared abruptly. The cross-modal check catches tracks whose overall kinematic profile is anomalous, not tracks whose only anomaly is a discontinuous appearance. That detection falls to Check 4. The temporal coherence filter (Check 4) correctly detects the pop-in when the spatial discontinuity exceeds approximately 80 m.
 
 Below ~80 m, the coherence detection rate and the kinematic-bounds pass rate cross over: kinematic bounds continue to pass while coherence detection drops below 50%. This cross-over point is distinct from the 80 m per-track median-filter threshold. The cross-over measures the population-level rate at which coherence detection fails to catch small-jump adversarial tracks, while the 80 m threshold is the per-track residual cutoff in the sliding-window median filter. Phase GD-0 must characterize both values against representative sensor noise profiles on target hardware. Figure C shows the trajectory divergence, the coherence residual spike at pop-in, the speed and G-load profiles confirming kinematic compliance, and the check-coverage sweep across pop-in magnitudes.
+
+![Figure C: Lethal compliance — trajectory, coherence residual, kinematics, and check coverage.](results/C_lethal_compliance.png)
 
 ## 6.4 Sensitivity: Combined Detection vs. Adversary Sophistication
 
@@ -234,7 +240,11 @@ The per-check detection probabilities are parametric assumptions informed by the
 
 Combined detection exceeds 99% for adversaries below sophistication 0.75. At nation-state sophistication (s=0.74), combined detection is approximately 99%. At maximum sophistication (s=1.0, nation-state with calibration data access), combined detection drops to approximately 89%. These figures reflect parametric assumptions, not measured rates; the sophistication scalar is a modeling convenience, not an operational threat taxonomy (see caveat below). Figure D shows per-check detection probability across the full sophistication range; the PINN flat line at ~72% is the floor the hardware entropy source provides against a zero-knowledge adversary. Figure E (left panel) shows the full 7-check Monte Carlo curve.
 
+![Figure D: Analytical 7-check sensitivity as small multiples (shared 0–100 frame). Combined panel is any-check detection.](results/D_sensitivity.png)
+
 **PINN degradation scenario.** The PINN's detection contribution depends on the hardware entropy source (satellite radiation-event counter) being physically secure. If an adversary gains co-orbital access or builds a sufficiently accurate radiation-environment model to predict the Lorenz seed, the PINN's detection floor collapses. The simulation includes a named PINN-zeroed scenario (p_pinn forced to 0 in the Monte Carlo) that computes the degraded combined detection rate directly. With the PINN zeroed out, the remaining 6-check model yields combined detection at s=1.0 of approximately 62%, down from ~89% with the full 7-check model. At s=0.74 (nation-state), 6-check detection is approximately 96% versus ~99% with all 7 checks. The gap widens sharply at high sophistication: the PINN contributes little at low s (where other checks already catch nearly everything) but accounts for an approximately 27 percentage-point difference at s=1.0. If the PINN assumption fails in the orbital domain, the system retains majority detection capability but loses the margin that separates operationally adequate from operationally marginal against the most capable adversaries. Figure E (right panel) shows the gap directly: the blue and red curves track together until s ≈ 0.6, then diverge sharply to the ~89% vs. ~62% endpoints at s = 1.0.
+
+![Figure E: Monte Carlo 7-check combined detection (left) and PINN-zeroed degradation (right).](results/E_sensitivity_full.png)
 
 **Caveat on per-check models and the sophistication scalar.** The individual check detection probabilities at each sophistication level are parametric assumptions (e.g., "P(physics check detects) = 1 - 0.92s"), not measured failure rates. Their functional forms are informed by the Scenario A-C simulation results and by the ML security literature, but they are not empirically validated at each point. The combined rate is the product of these assumptions processed through Monte Carlo sampling. The headline numbers are only as reliable as the per-check models they rest on. Phase GD-0 must replace the parametric per-check models with measured hardware failure rates.
 
