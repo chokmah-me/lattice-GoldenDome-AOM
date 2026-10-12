@@ -1,14 +1,14 @@
 # Claim verification — pass
 
-- project: `C:\Users\Elke Shayna\Documents\00Dev\lattice-GoldenDome-AOM`
-- manifest: `C:\Users\Elke Shayna\Documents\00Dev\lattice-GoldenDome-AOM\claim-manifest.json`
-- timestamp: 2026-08-17T02:11:10.947278+00:00
+- project: `/home/hatch/workspace/batch-work/lattice-GoldenDome-AOM`
+- manifest: `/home/hatch/workspace/batch-work/lattice-GoldenDome-AOM/claim-manifest.json`
+- timestamp: 2026-10-12T17:36:14.045976+00:00
 - claims: 5
 
 | claim | ok | exit | duration_ms |
 |---|---|---|---|
-| A-ghost | True | 0 | 15131 |
-| B-quant | True | 0 | 14479 |
-| C-lethal | True | 0 | 13537 |
-| D-analytical | True | 0 | 13711 |
-| E-montecarlo | True | 0 | 16623 |
+| A-ghost | True | 0 | 1974 |
+| B-quant | True | 0 | 2190 |
+| C-lethal | True | 0 | 1735 |
+| D-analytical | True | 0 | 1853 |
+| E-montecarlo | True | 0 | 1838 |

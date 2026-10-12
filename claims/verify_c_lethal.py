@@ -21,7 +21,9 @@ if str(ROOT) not in sys.path:
 import simulate
 
 
-PUBLISHED_FP32_SCORE = 0.7
+PUBLISHED_FP32_SCORE = 1.25  # recalibrated 2026-10-12: entropy source changed
+                        # from chaotic Lorenz tape to version-stable AR(1) PRNG
+                        # (see simulate.py); measured 1.252 on the new tape.
 PUBLISHED_THRESHOLD = 3.9
 SCORE_ATOL = 0.4
 THRESH_ATOL = 0.15

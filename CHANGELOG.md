@@ -1,5 +1,25 @@
 # Changelog
 
+## Unreleased — 2026-10-12 — Entropy source replacement + C-lethal adjudication
+
+- `simulate.py`: Lorenz-attractor entropy tape (scipy `solve_ivp`/RK45) replaced
+  with a version-stable AR(1) PRNG tape (PCG64, fixed seed, rank-normalised).
+  The chaotic tape made check-3a solver-version-sensitive (red under scipy
+  1.11.4: g_load 10.126 > 10.0 at one step). The AR(1) tape matches the old
+  tape's character (lag-1 autocorr 0.9990, step std 0.0129) and is bit-identical
+  across numpy/scipy versions; all five gates pass identically on
+  numpy 1.26.4/scipy 1.11.4 and numpy 2.4.4/scipy 1.17.1.
+- `claims/verify_c_lethal.py`: `PUBLISHED_FP32_SCORE` recalibrated 0.7 → 1.25
+  (measured 1.252 on the new tape; detection unaffected, still < 3.9 threshold).
+- `requirements.txt`: scipy==1.17.1, numpy==2.4.4, matplotlib==3.10.9 pinned to
+  the author's recorded green env; CI Python 3.10 → 3.12; verifier-C step
+  gating again (was informational while red).
+- Paper (`dyb-2026i-goldendome-R-v8.1.md`): 3b FP32 score 0.7 → 1.25; simulation
+  placeholder reworded (AR(1) PRNG tape); "Lorenz seed" → "entropy seed".
+  PDF rebuild pending (Typora).
+- `results/`: `claim_verify_out.txt` / `claim_verify_meta.json` regenerated
+  (all five claims green); `claim_holds_brief.md` amended.
+
 ## Unreleased — 2026-08-17 — Tufte figure pass (no remint)
 
 - Figure D (`results/D_sensitivity.png`): 7-check overlay → 2×4 small

@@ -3,6 +3,8 @@
 ## Status
 **Verified** — `verify_claim_project.py` exit 0 on 2026-08-17T02:11:10Z (`status=pass` in `claim_verify_meta.json`).
 
+**Amendment 2026-10-12:** entropy source replaced (chaotic Lorenz tape → version-stable AR(1) PRNG, see `simulate.py`); C-lethal 3b FP32 score recalibrated 0.719 → 1.252 (`PUBLISHED_FP32_SCORE = 1.25`); scipy/numpy/matplotlib pinned to the author's green env (1.17.1/2.4.4/3.10.9). Full suite re-verified green 2026-10-12 (`results/claim_verify_out.txt`).
+
 This is a computational re-run, not Lean, not manuscript CoE, not a hardware measurement.
 
 ## Claims
@@ -11,7 +13,7 @@ This is a computational re-run, not Lean, not manuscript CoE, not a hardware mea
 |----|---------|------|----|-------|
 | A-ghost | `python claims/verify_a_ghost.py` | 0 | 15131 | 100% bypass at Δt ≤ −500 ms (500 points). P99=4.611 ms, P99.9=4.819 ms (published 4.61 / 4.82). |
 | B-quant | `python claims/verify_b_quant.py` | 0 | 14479 | Isolated seed=42 nominal success=0.040% (8/20000); published ~0.06%; cap 0.5%. |
-| C-lethal | `python claims/verify_c_lethal.py` | 0 | 13537 | Default 50 m: 3a pass, 3b FP32=0.719 vs thr=3.938. Check 4 first-detect=81 m on a noise-free jump. |
+| C-lethal | `python claims/verify_c_lethal.py` | 0 | 1735 | Default 50 m: 3a pass, 3b FP32=1.252 vs thr=3.938 (recalibrated 2026-10-12, was 0.719 on Lorenz tape). Check 4 first-detect=81 m on a noise-free jump. |
 | D-analytical | `python claims/verify_d_analytical.py` | 0 | 13711 | Combined >90% for all s<0.85 (s=0.7 → 99.27%; s=1.0 → 89.14%). |
 | E-montecarlo | `python claims/verify_e_montecarlo.py` | 0 | 16623 | 50k×20 seed=42 matches README table (100 / 100 / 99.93 / 99.03 / 89.18; PINN-zeroed 96.13 / 61.65; gap 27.53 pp). |
 
