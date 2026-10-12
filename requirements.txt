@@ -1,6 +1,8 @@
-numpy==1.26.4
-scipy>=1.10           # left unpinned: claims/verify_c_lethal.py check-3a is solver-sensitive
-                      # (Lorenz entropy tape via scipy RK45); green in results/claim_verify_out.txt,
-                      # red under scipy 1.11.4 here (g_load 10.126 > 10.0 at one step). Pin only after adjudication.
-matplotlib>=3.7
+numpy==2.4.4
+scipy==1.17.1         # pinned per 2026-10-12 adjudication (ruling A): claims/verify_c_lethal.py
+                      # check-3a is solver-sensitive (Lorenz entropy tape via scipy RK45); green under
+                      # the author's recorded env (Python 3.14.4, numpy 2.4.4, scipy 1.17.1, Windows,
+                      # results/claim_holds_brief.md), red under scipy 1.11.4 here
+                      # (g_load 10.126 > 10.0 at one step). Re-verified green 2026-10-12 on the pin.
+matplotlib==3.10.9
 numba>=0.57           # optional but recommended for hgv_dynamics_step

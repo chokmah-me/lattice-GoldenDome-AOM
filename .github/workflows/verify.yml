@@ -31,13 +31,11 @@ jobs:
           python claims/verify_a_ghost.py
           python claims/verify_b_quant.py
           python claims/verify_d_analytical.py
-      - name: Run verifier C (informational — known-red on HEAD)
-        # claims/verify_c_lethal.py check-3a is solver-sensitive: the Lorenz
-        # entropy tape (scipy RK45) yields g_load 10.126 > 10.0 at one step
-        # under current scipy, while the author's recorded run in
-        # results/claim_verify_out.txt is green. Kept informational until
-        # adjudicated; must not gate the build.
-        continue-on-error: true
+      - name: Run verifier C (gating — adjudicated 2026-10-12)
+        # claims/verify_c_lethal.py check-3a is solver-sensitive (Lorenz
+        # entropy tape via scipy RK45). Adjudicated 2026-10-12 (ruling A):
+        # pinned to the author's green env (scipy==1.17.1, numpy==2.4.4) in
+        # requirements.txt and re-verified green. Gating again.
         run: |
           set -euo pipefail
           python claims/verify_c_lethal.py
