@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased — 2026-10-13 — Paper reminted v8.1 → v8.2
+
+- The 2026-10-12 in-place amendment of the v8.1 paper (entropy-tape
+  replacement, 3b FP32 score 0.7 → 1.25, env pinning) was substantive, so
+  it now ships as **v8.2** (`dyb-2026i-goldendome-R-v8.2.md`) with a fresh
+  version line and Hebrew date (2 Cheshvan 5787). The amended v8.1 md +
+  pdf moved to `archive/` (the amended v8.1 md was never published as a
+  PDF; the Zenodo record 21971208 remains the pre-amendment v8.1).
+- Zenodo deposit unchanged (v8.1, 10.5281/zenodo.21971208) until the user
+  mints v8.2. v8.2 PDF rebuild pending (Typora). CITATION.cff
+  preferred-citation stays at v8.1 until deposit.
+
 ## Unreleased — 2026-10-12 — Entropy source replacement + C-lethal adjudication
 
 - `simulate.py`: Lorenz-attractor entropy tape (scipy `solve_ivp`/RK45) replaced

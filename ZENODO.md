@@ -17,6 +17,7 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 | [10.5281/zenodo.19368682](https://doi.org/10.5281/zenodo.19368682) | **Superseded after mint** | v7 / Zenodo version `1.0.0`; 2026-03-31. Catalog URL path fragment. |
 | 10.5281/zenodo.21971138 | discarded | Unpublished v8 draft; deleted. |
 | [10.5281/zenodo.21971208](https://doi.org/10.5281/zenodo.21971208) | **Current** | v8.1; 2026-08-16. PDF + source + Figure F. |
+| — | in preparation | v8.2; 2026-10-13. md in repo; PDF pending; not yet deposited. |
 
 ## External links
 
