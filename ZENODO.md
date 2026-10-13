@@ -24,8 +24,8 @@ Two separate Zenodo **concepts** (do not merge paper and software):
 - **GitHub:** https://github.com/chokmah-me/lattice-GoldenDome-AOM
 - **Release:** https://github.com/chokmah-me/lattice-GoldenDome-AOM/releases/tag/1.0.1 (current software). Prior: [`1.0.0`](https://github.com/chokmah-me/lattice-GoldenDome-AOM/releases/tag/1.0.0).
 - **OSF (legacy v7 mirror):** https://osf.io/sxt7v/ — do not open a new child
-- **Catalog (v8.1, live until site rebuild):** https://chokmah.me/research/golden-dome-latency-governance-autonomous-operations-model-e-21971208/  
-  Historical v7 slug: `…-19368682/`. Add slug `…-e-23334956/` for v8.2.
+- **Catalog (v8.2):** https://chokmah.me/research/golden-dome-latency-governance-autonomous-operations-model-e-23334956/  
+  Prior: `…-e-21971208/` (v8.1), `…-19368682/` (v7).
 
 ## Citation
 
