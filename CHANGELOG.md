@@ -11,6 +11,9 @@
 - Zenodo deposit unchanged (v8.1, 10.5281/zenodo.21971208) until the user
   mints v8.2. v8.2 PDF rebuild pending (Typora). CITATION.cff
   preferred-citation stays at v8.1 until deposit.
+- AI Use Statement updated: names Muse (Meta) for the v8.2 verification
+  and amendment work alongside Claude (Anthropic) and Gemini (Google).
+  Metadata-only; no version bump.
 
 ## Unreleased — 2026-10-12 — Entropy source replacement + C-lethal adjudication
 

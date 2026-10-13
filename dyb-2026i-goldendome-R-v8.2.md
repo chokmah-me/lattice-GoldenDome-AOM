@@ -359,4 +359,4 @@ This section records what changed between the v7 release (March 31, 2026) and th
 
 **AI Use Statement**
 
-Draft generation and review assisted by Claude (Anthropic) and Gemini (Google). The author directed all arguments, specified all architectural decisions, and takes full responsibility for the content.
+Draft generation and review were assisted by Claude (Anthropic) and Gemini (Google); simulation verification, results cross-checking, and the v8.2 manuscript amendment were assisted by Muse (Meta) AI agents. All work was performed at the author's direction. The author directed all arguments, specified all architectural decisions, reviewed every reported result, and takes full responsibility for the content.
