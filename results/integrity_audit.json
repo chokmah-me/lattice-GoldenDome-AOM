@@ -6,12 +6,12 @@
   "unbound_buckets": {},
   "status": "pass",
   "project": "lattice-GoldenDome-AOM",
-  "manuscript": "dyb-2026i-goldendome-R-v8.1.md",
+  "manuscript": "dyb-2026i-goldendome-R-v8.2.md",
   "bibliography": null,
   "manifest": "integrity-manifest.json",
   "companions": [],
   "online": true,
-  "timestamp_utc": "2026-08-17T07:07:02Z",
+  "timestamp_utc": "2026-10-13T07:14:37Z",
   "citations": [
     {
       "kind": "zenodo",
@@ -97,7 +97,7 @@
   "numbered_refs": [],
   "checks": {
     "I1": "pass",
-    "I2": "n/a",
+    "I2": "limited",
     "I3": "pass",
     "I4": "limited",
     "I5": "warn"
@@ -170,10 +170,16 @@
       "detail": "10.5281/zenodo.19368609 via zenodo"
     },
     {
+      "check": "I2",
+      "severity": "limited",
+      "code": "protocol_needs_judgment",
+      "detail": "proof/verify language present; auditor must confirm the matching gate"
+    },
+    {
       "check": "I4",
       "severity": "limited",
       "code": "needs_alignment_judgment",
-      "detail": "artifacts for method check: ['lattice-GoldenDome-AOM/Esimulate.py', 'lattice-GoldenDome-AOM/simulate.py', 'lattice-GoldenDome-AOM/claims/verify_a_ghost.py', 'lattice-GoldenDome-AOM/claims/verify_b_quant.py', 'lattice-GoldenDome-AOM/claims/verify_c_lethal.py', 'lattice-GoldenDome-AOM/claims/verify_d_analytical.py', 'lattice-GoldenDome-AOM/claims/verify_e_montecarlo.py']"
+      "detail": "artifacts for method check: ['lattice-GoldenDome-AOM/simulate.py', 'lattice-GoldenDome-AOM/archive/Esimulate.py', 'lattice-GoldenDome-AOM/claims/verify_a_ghost.py', 'lattice-GoldenDome-AOM/claims/verify_b_quant.py', 'lattice-GoldenDome-AOM/claims/verify_c_lethal.py', 'lattice-GoldenDome-AOM/claims/verify_d_analytical.py', 'lattice-GoldenDome-AOM/claims/verify_e_montecarlo.py']"
     },
     {
       "check": "I5",

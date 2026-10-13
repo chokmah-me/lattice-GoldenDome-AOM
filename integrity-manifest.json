@@ -1,6 +1,6 @@
 {
   "schema": "cd-manuscript-integrity/v1",
-  "manuscript": "dyb-2026i-goldendome-R-v8.1.md",
+  "manuscript": "dyb-2026i-goldendome-R-v8.2.md",
   "i1_policy": "strict",
   "results": [
     "results/i1_bindings.json",
@@ -61,6 +61,12 @@
       "value": 50.0,
       "source_path": "results/i1_bindings.json",
       "source_key": "falsification_published.coherence_below_50pct"
+    },
+    {
+      "id": "C-3b-fp32",
+      "value": 1.25,
+      "source_path": "results/i1_bindings.json",
+      "source_key": "falsification_published.c3b_fp32"
     },
     {
       "id": "leo-zenith-rt",

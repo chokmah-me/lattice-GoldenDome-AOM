@@ -12,7 +12,8 @@
     "pinn_zero_s074_approx_pct": 96.0,
     "pinn_zero_s100_approx_pct": 62.0,
     "pinn_floor_pct": 72.0,
-    "coherence_below_50pct": 50.0
+    "coherence_below_50pct": 50.0,
+    "c3b_fp32": 1.25
   },
   "falsification_measured_ccg_20260817": {
     "p99_ms": 4.611,
@@ -29,6 +30,12 @@
     "pinn_zero_s074_pct": 96.13,
     "pinn_zero_s100_pct": 61.65,
     "pinn_gap_pp": 27.53
+  },
+  "falsification_measured_ccg_20261012": {
+    "note": "AR(1) PRNG entropy tape; C-lethal 3b recalibrated. Other measured keys unchanged vs 2026-08-17 within published tolerances.",
+    "c3b_fp32": 1.252,
+    "c3b_threshold": 3.938,
+    "coherence_first_detect_m": 81.0
   },
   "propagation_first_principles": {
     "leo_zenith_rt_ms": 3.7,

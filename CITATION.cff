@@ -29,11 +29,11 @@ preferred-citation:
       orcid: "https://orcid.org/0000-0002-9040-6914"
       affiliation: "Chokmah LLC"
   year: 2026
-  month: 8
-  version: "8.1"
+  month: 10
+  version: "8.2"
   doi: "10.5281/zenodo.19368681"
   url: "https://doi.org/10.5281/zenodo.19368681"
   publisher:
     name: Zenodo
   # preferred-citation.doi is the paper concept (always latest PDF).
-  # Pin this PDF with 10.5281/zenodo.21971208.
+  # Pin this PDF with 10.5281/zenodo.23334956.

@@ -16,7 +16,8 @@ operates under strict latency and availability constraints (474 ms LEO-to-GEO re
 
 Companion paper: Bilar (2026), *Golden Dome Latency Governance: Autonomous Operations 
 Model Extended to Boost-Phase Intercept Timelines*, DOI: 10.5281/zenodo.19368681  
-(concept; always latest). v8.1 PDF: 10.5281/zenodo.21971208. v7 PDF: 10.5281/zenodo.19368682.
+(concept; always latest). v8.2 PDF: 10.5281/zenodo.23334956. v8.1 PDF: 10.5281/zenodo.21971208. 
+v7 PDF: 10.5281/zenodo.19368682.
 Companion AOM paper: Bilar (2026), *Anduril LatticeOS: Autonomous Operations Model*, 
 DOI: 10.5281/zenodo.19266807
 
@@ -50,7 +51,7 @@ sub-10g G-load) but appears abruptly with no prior history.
 
 **Finding:** Check 3a (kinematic bounds) passes the adversarial track at all tested 
 discontinuity magnitudes. Check 3b (cross-modal Mahalanobis) also passes at the 
-default 50 m pop-in offset (FP32 score = 0.7, threshold = 3.9): the adversary's 
+default 50 m pop-in offset (FP32 score = 1.25, threshold = 3.9): the adversary's 
 aggregate kinematic statistics stay close to the genuine track's calibration 
 distribution. Detection falls entirely to Check 4. The temporal coherence filter 
 correctly catches the pop-in when spatial discontinuity exceeds ~80 m. Below that 
@@ -138,7 +139,7 @@ python path/to/computational-claim-gate/scripts/verify_claim_project.py --projec
 
 Evidence: `results/claim_verify_meta.json`, `results/claim_verify_out.txt`, `results/claim_holds_brief.md`.
 
-Manuscript number/cite integrity (v8.1) is a separate pass: `integrity-manifest.json` → `results/integrity_audit.json`. That pass is structural, not scientific verification.
+Manuscript number/cite integrity (v8.2) is a separate pass: `integrity-manifest.json` → `results/integrity_audit.json`. That pass is structural, not scientific verification.
 
 Do not run `archive/Esimulate.py`. It is a leftover v4 4-check Monte Carlo that overrides the v5 7-check model.
 

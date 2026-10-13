@@ -1,36 +1,36 @@
 computational-claim-gate verify  ok=True
 schema: cd-claim-gate/v1
-project: /home/hatch/workspace/batch-work/lattice-GoldenDome-AOM
-manifest: /home/hatch/workspace/batch-work/lattice-GoldenDome-AOM/claim-manifest.json
-timestamp: 2026-10-12T17:36:14.045976+00:00
+project: C:\Users\Elke Shayna\Documents\00Dev\lattice-GoldenDome-AOM
+manifest: C:\Users\Elke Shayna\Documents\00Dev\lattice-GoldenDome-AOM\claim-manifest.json
+timestamp: 2026-10-13T07:14:30.394937+00:00
 claims: 5
 
-## claim A-ghost  ok=True  exit=0  ms=1974
+## claim A-ghost  ok=True  exit=0  ms=36715
 cmd: ['python', 'claims/verify_a_ghost.py']
 --- log tail ---
 A-ghost: bypass@Δt≤−500ms = 100% (500 points); P99=4.611 ms; P99.9=4.819 ms
 OK: A-ghost cliff + latency (P99=4.611, P99.9=4.819 vs 4.61/4.82)
 
-## claim B-quant  ok=True  exit=0  ms=2190
+## claim B-quant  ok=True  exit=0  ms=11300
 cmd: ['python', 'claims/verify_b_quant.py']
 --- log tail ---
 B-quant: nominal success=0.040% (8/20000); fp32_thresh=3.938
 OK: B-quant isolated seed=42 rate=0.040% (published ~0.06%; cap 0.5%)
 
-## claim C-lethal  ok=True  exit=0  ms=1735
+## claim C-lethal  ok=True  exit=0  ms=7545
 cmd: ['python', 'claims/verify_c_lethal.py']
 --- log tail ---
 C-lethal default 50 m: 3a_pass=True 3b_fp32=1.252 thresh=3.938 3b_pass=True
 C-lethal: Check 4 first-detect jump ≈ 81.0 m (published ~80 m)
 OK: C-lethal 3a/3b pass at 50 m (FP32=1.25, thr=3.94); 200 m detected; crossover=81 m
 
-## claim D-analytical  ok=True  exit=0  ms=1853
+## claim D-analytical  ok=True  exit=0  ms=7847
 cmd: ['python', 'claims/verify_d_analytical.py']
 --- log tail ---
 D-analytical: p(s=0.7)=99.27%  p(s=0.85)=96.81%  p(s=1.0)=89.14%  n(s<0.85 and p≤0.9)=0
 OK: D-analytical combined >90% for all s<0.85 (s=0.7 → 99.3%; s=1.0 → 89.1%)
 
-## claim E-montecarlo  ok=True  exit=0  ms=1838
+## claim E-montecarlo  ok=True  exit=0  ms=8144
 cmd: ['python', 'claims/verify_e_montecarlo.py']
 --- log tail ---
 E-montecarlo full 7-check (nearest linspace points):

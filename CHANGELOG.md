@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — 2026-10-13 — Paper reminted v8.1 → v8.2
+## 2026-10-13 — Paper reminted v8.1 → v8.2 (Zenodo 23334956)
 
 - The 2026-10-12 in-place amendment of the v8.1 paper (entropy-tape
   replacement, 3b FP32 score 0.7 → 1.25, env pinning) was substantive, so
@@ -8,12 +8,18 @@
   version line and Hebrew date (2 Cheshvan 5787). The amended v8.1 md +
   pdf moved to `archive/` (the amended v8.1 md was never published as a
   PDF; the Zenodo record 21971208 remains the pre-amendment v8.1).
-- Zenodo deposit unchanged (v8.1, 10.5281/zenodo.21971208) until the user
-  mints v8.2. v8.2 PDF rebuild pending (Typora). CITATION.cff
-  preferred-citation stays at v8.1 until deposit.
+- `dyb-2026i-goldendome-R-v8.2.pdf` is in the repo (Typora rebuild 2026-10-13,
+  AI Use Statement refresh). Published as 10.5281/zenodo.23334956 under
+  concept 10.5281/zenodo.19368681. v8.1 21971208 is superseded.
+- Release-sync Phase A: README Scenario C FP32 0.7 → 1.25; integrity
+  manifest pointed at v8.2.md. CCG re-run 2026-10-13T07:14Z exit 0
+  (3b FP32=1.252). Manuscript integrity `--online` pass on v8.2.md.
+- Draft 23334956 metadata PUT then **Published**: version 8.2; files
+  `dyb-2026i-goldendome-R-v8.2.pdf` + `clock_trust_fpga_dark_v2.png`.
+  Public GET 200; concept latest is v8.2.
 - AI Use Statement updated: names Muse (Meta) for the v8.2 verification
   and amendment work alongside Claude (Anthropic) and Gemini (Google).
-  Metadata-only; no version bump.
+  Markdown from origin `3f291c9`; Typora PDF re-export uploaded on mint.
 
 ## Unreleased — 2026-10-12 — Entropy source replacement + C-lethal adjudication
 
